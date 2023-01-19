@@ -10,21 +10,22 @@
   <div class="carousel-inner">
     <div *ngFor="let item of items; first as isFirst" class="carousel-item" data-bs-interval="4000"
          [ngClass]="{'active':isFirst}">
-      <img src="assets/img/carousel-background.png" class="d-block w-100" height="350px">
-      <div class="container">
-        <div class="my-carousel-caption">
-          <label>{{item.title}}</label>
-          <p>{{item.subtitle}}</p>
-          <button class="btn mt-4 mb-5" routerLink="{{item.route}}">Aprender más</button>
-        </div>
+      <svg width="101%" height="350px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+           preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="#939090"/>
+      </svg>
+      <div class="my-carousel-caption">
+        <label>{{item.title}}</label>
+        <p class="d-none d-md-block">{{item.subtitle}}</p>
+        <button class="btn mt-4 mb-5" routerLink="{{item.route}}">Aprender más</button>
       </div>
     </div>
   </div>
 
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <fa-icon [icon]="faCaretLeft" size="4x" ></fa-icon>
+    <fa-icon [icon]="faCaretLeft" size="4x"></fa-icon>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <fa-icon [icon]="faCaretRight" size="4x" ></fa-icon>
+    <fa-icon [icon]="faCaretRight" size="4x"></fa-icon>
   </button>
 </div>
