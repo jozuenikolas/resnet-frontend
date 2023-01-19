@@ -1,0 +1,25 @@
+<div class="header header__container">
+  <div class="header__logo">
+    <img src="assets/img/logo-epn.png" alt="logo-epn" height="50" width="50">
+    ResNet
+  </div>
+
+  <div id="reorder" class="header__dropdown ">
+    <fa-icon [icon]="faBars" size="2x" (click)="showDropdown=!showDropdown"></fa-icon>
+    <div *ngIf="showDropdown" id="dropdown-content" class="header__dropdown-content">
+      <div *ngFor="let item of items" routerLink="{{item.route}}" routerLinkActive="fw-bold">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+
+  <div class="header__molecules">
+    <div *ngFor="let item of items; first as isFirst" class="header__link-container"
+         [ngClass]="{'right-divisor':isFirst}">
+      <div class="header__link" routerLink="{{item.route}}" routerLinkActive="fw-bold">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -7,3 +7,13 @@ html, body {
 body {
   margin: 0
 }
+
+:root {
+  --primary: #2467CC;
+  --secondary: #939090;
+  --white: #FBFBFB;
+}
+
+.my-border {
+  border: 1px red solid
+}
