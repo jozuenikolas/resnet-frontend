@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {Search, SearchOption} from "../../interfaces/search.interface";
 
 @Component({
   selector: 'app-search',
@@ -9,15 +10,15 @@ import {faSearch} from "@fortawesome/free-solid-svg-icons";
 export class SearchComponent {
   faSearch = faSearch
 
-  searchOptions: any[] = [
+  searchOptions: SearchOption[] = [
     {code: 'au', label: 'Autor', placeholder: 'Lorena Recalde'},
     {code: 'mrau', label: 'Autores relevantes', placeholder: 'Artificial Intelligence, Covid'},
     {code: 'mrar', label: 'Artículos relevantes', placeholder: 'Machine learning'}
   ]
 
-  selectedOption: any = this.searchOptions[0]
+  selectedOption: SearchOption = this.searchOptions[0]
   inputValue: string = ""
 
-  @Output() search: EventEmitter<any> = new EventEmitter<any>()
+  @Output() search: EventEmitter<Search> = new EventEmitter<Search>()
 
 }

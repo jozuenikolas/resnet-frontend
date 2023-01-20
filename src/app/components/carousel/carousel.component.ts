@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {faCaretRight, faCaretLeft} from "@fortawesome/free-solid-svg-icons";
+import {CarouselItem} from "../../interfaces/carousel.interface";
 
 @Component({
   selector: 'app-carousel',
@@ -7,12 +8,10 @@ import {faCaretRight, faCaretLeft} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent {
-
   faCaretRight = faCaretRight;
-
   faCaretLeft = faCaretLeft;
 
-  items: any[] = [
+  items: CarouselItem[] = [
     {
       title: 'Búsqueda de autor',
       subtitle: 'Busca autores por nombre, apellido, identificador o sus iniciales',

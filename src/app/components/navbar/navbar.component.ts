@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
+import {NavbarItem} from "../../interfaces/navbar.interface";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ export class NavbarComponent {
   faBars = faBars;
   showDropdown: boolean = false
 
-  items: any[] = [
+  items: NavbarItem[] = [
     {route: '/home', label: 'INICIO'},
     {route: '/about', label: 'ACERCA DE'}
   ]
