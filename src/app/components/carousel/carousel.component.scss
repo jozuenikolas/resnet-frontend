@@ -1,12 +1,25 @@
 label {
-  font-size: 45px;
+  font-size: calc(1.475rem + 2.7vw);
+  line-height: 1.2;
   color: var(--white);
   font-weight: bold;
 }
 
+@media (min-width: 1200px) {
+  label {
+    font-size: 3.5rem
+  }
+}
+
 p {
-  font-size: 20px;
+  font-size: calc(.775rem + 1.5vw);
   color: var(--white);
+}
+
+@media (min-width: 1200px) {
+  p {
+    font-size: 1.9rem
+  }
 }
 
 .my-carousel-caption {
@@ -17,13 +30,15 @@ p {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   color: #fff;
-  text-align: center
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 button.btn {
   background-color: var(--primary);
   color: var(--white);
-
 }
 
 .carousel-indicators > button {
