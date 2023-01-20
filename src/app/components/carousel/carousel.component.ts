@@ -19,12 +19,12 @@ export class CarouselComponent {
     },
     {
       title: 'Búsqueda de autores relevantes',
-      subtitle: 'Busca autores por nombre, apellido, identificador o sus iniciales',
+      subtitle: 'Busca los autores más relevantes sobre cualquier tema',
       route: '/about'
     },
     {
-      title: 'Búsqueda de artículos',
-      subtitle: 'Busca autores por nombre, apellido, identificador o sus iniciales',
+      title: 'Búsqueda de artículos relevantes',
+      subtitle: 'Busca el estado del arte del cualquier tema',
       route: '/about'
     }
   ]

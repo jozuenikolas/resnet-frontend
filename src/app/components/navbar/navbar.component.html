@@ -7,7 +7,8 @@
   <div id="reorder" class="header__dropdown ">
     <fa-icon [icon]="faBars" size="2x" (click)="showDropdown=!showDropdown"></fa-icon>
     <div *ngIf="showDropdown" id="dropdown-content" class="header__dropdown-content">
-      <div *ngFor="let item of items" routerLink="{{item.route}}" routerLinkActive="fw-bold">
+      <div *ngFor="let item of items" routerLink="{{item.route}}" routerLinkActive="fw-bold"
+           (click)="showDropdown=false">
         {{item.label}}
       </div>
     </div>
