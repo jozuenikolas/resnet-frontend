@@ -1,0 +1,17 @@
+<div class="btn-group search-container">
+  <div class="btn-group" ngbDropdown role="group">
+    <button type="button" class="btn btn-danger btn-select" ngbDropdownToggle>{{selectedOption.label}}</button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem *ngFor="let option of searchOptions"
+              (click)="selectedOption=option">{{option.label}}</button>
+    </div>
+  </div>
+  <input class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue">
+  <button type="button" class="btn btn-primary btn-search" (click)="this.search.emit({
+      option: this.selectedOption.code,
+      query: this.inputValue
+    })">
+    <fa-icon [icon]="faSearch"></fa-icon>
+    <label class="d-none d-md-block">Buscar</label>
+  </button>
+</div>

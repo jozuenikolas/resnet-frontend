@@ -6,7 +6,14 @@ import {Component} from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  searchValue: any
+
   constructor() {
     scroll({top: 0, behavior: 'smooth'})
+  }
+
+  onSearch(searchValue: any) {
+    this.searchValue = searchValue
+    console.log(this.searchValue)
   }
 }
