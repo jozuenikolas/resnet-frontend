@@ -11,9 +11,9 @@ export class SearchComponent {
   faSearch = faSearch
 
   searchOptions: SearchOption[] = [
-    {code: 'au', label: 'Autor', placeholder: 'Lorena Recalde'},
-    {code: 'mrau', label: 'Autores relevantes', placeholder: 'Artificial Intelligence, Covid'},
-    {code: 'mrar', label: 'Artículos relevantes', placeholder: 'Machine learning'}
+    {code: 'au', label: 'Autor', placeholder: 'Ej. Lorena Recalde'},
+    {code: 'mrau', label: 'Autores relevantes', placeholder: 'Ej. Artificial Intelligence, Covid'},
+    {code: 'mrar', label: 'Artículos relevantes', placeholder: 'Ej. Machine learning'}
   ]
 
   selectedOption: SearchOption = this.searchOptions[0]
