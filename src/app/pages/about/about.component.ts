@@ -13,13 +13,12 @@ export class AboutComponent {
 
   ngAfterViewChecked(): void {
     this.activeRoute.params.subscribe(param => {
-      if (param['section']) {
-        const id = param['section']
+      const id = param['section']
+      if (id) {
         const yOffset = -90;
         const element = document.getElementById(id);
-        if (element) {
-          const y = element.getBoundingClientRect().top + yOffset;
-          window.scrollTo({top: y, behavior: 'smooth'});
+        if (element && element.getBoundingClientRect().top + yOffset > 0) {
+          window.scrollTo({top: element.getBoundingClientRect().top + yOffset, behavior: 'smooth'});
         }
       }
     })
