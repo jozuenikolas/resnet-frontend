@@ -1,7 +1,10 @@
+import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
+
 export interface SearchOption {
   code: string
   label: string
   placeholder: string
+  icon: IconDefinition
 }
 
 

@@ -1,9 +1,17 @@
 <div class="btn-group search-container">
   <div class="btn-group" ngbDropdown role="group">
-    <button type="button" class="btn btn-danger btn-select" ngbDropdownToggle>{{selectedOption.label}}</button>
+    <button type="button" class="btn btn-danger btn-select" ngbDropdownToggle>
+      <fa-icon [icon]="selectedOption.icon"></fa-icon>
+      <label class="d-none d-md-block">
+        {{selectedOption.label}}
+      </label>
+    </button>
     <div class="dropdown-menu" ngbDropdownMenu>
-      <button ngbDropdownItem *ngFor="let option of searchOptions"
-              (click)="selectedOption=option">{{option.label}}</button>
+      <button ngbDropdownItem class="btn-option" *ngFor="let option of searchOptions"
+              (click)="selectedOption=option">
+        <fa-icon [icon]="option.icon"></fa-icon>
+        {{option.label}}
+      </button>
     </div>
   </div>
   <input class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue">
