@@ -10,7 +10,6 @@ export class HomeComponent {
   searchValue!: Search
 
   constructor() {
-    scroll({top: 0, behavior: 'smooth'})
   }
 
   onSearch(searchValue: Search) {

@@ -8,15 +8,14 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AboutComponent {
 
-
   constructor(private activeRoute: ActivatedRoute) {
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewChecked(): void {
     this.activeRoute.params.subscribe(param => {
       if (param['section']) {
         const id = param['section']
-        const yOffset = -675;
+        const yOffset = -90;
         const element = document.getElementById(id);
         if (element) {
           const y = element.getBoundingClientRect().top + yOffset;
