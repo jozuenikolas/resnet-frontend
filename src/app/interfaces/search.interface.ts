@@ -1,7 +1,7 @@
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
 
 export interface SearchOption {
-  code: string
+  code: 'au' | 'mrau' | 'mrar'
   label: string
   placeholder: string
   icon: IconDefinition

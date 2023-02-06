@@ -1,5 +1,30 @@
 <app-carousel></app-carousel>
 
+<!-- Search Button -->
 <div class="container d-flex justify-content-center py-5 my-5">
   <app-search (search)="onSearch($event)"></app-search>
 </div>
+
+<!-- Results -->
+<div *ngIf="searchValue?.query" class="container d-flex flex-column mb-5">
+
+  <!-- Author Results -->
+  <ng-container *ngIf="searchValue.option=='au'">
+    <app-authors-table query="{{searchValue.query}}"></app-authors-table>
+  </ng-container>
+
+  <!-- Most Relevant Authors Results -->
+  <ng-container *ngIf="searchValue.option=='mrau'">
+    <label>Most Relevant Authors Results</label>
+  </ng-container>
+
+  <!-- Most Relevant Articles Results -->
+  <ng-container *ngIf="searchValue.option=='mrar'">
+    <label>Most Relevant Articles Results</label>
+  </ng-container>
+
+</div>
+
+
+
+
