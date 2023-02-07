@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
-import {AuthorResult} from "../../interfaces/author.interface";
+import {Component, Input, SimpleChanges} from '@angular/core';
+import {PaginationAuthorResult} from "../../interfaces/author.interface";
 import {AuthorService} from "../../services/author.service";
+import {BehaviorSubject, Observable, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-authors-table',
@@ -11,24 +12,34 @@ export class AuthorsTableComponent {
 
   @Input() query!: string
 
-  authors!: AuthorResult[]
-
   page = 1;
   pageSize = 4;
-  collectionSize = 24;
+
+  refreshTable$: BehaviorSubject<{ page: number, size: number }>
+    = new BehaviorSubject<{ page: number, size: number }>({page: this.page, size: this.pageSize})
+
+  authors$!: Observable<PaginationAuthorResult>
 
   constructor(private authorService: AuthorService) {
-    this.refreshTable()
   }
 
-  ngOnChanges() {
-    console.log('QUERY', this.query)
+
+  ngOnInit() {
+    this.authors$ = this.refreshTable$
+      .pipe(
+        switchMap(({page, size}) =>
+          this.authorService.getAuthorsByQuery(this.query, page, size)
+        )
+      )
   }
 
-  refreshTable() {
-    this.authors = this.authorService.getAuthorsByQuery().map((country, i) => ({id: i + 1, ...country})).slice(
-      (this.page - 1) * this.pageSize,
-      (this.page - 1) * this.pageSize + this.pageSize,
-    );
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['query']) {
+      this.refreshTable$.next({page: this.page, size: this.pageSize})
+    }
+  }
+
+  onChangePagination() {
+    this.refreshTable$.next({page: this.page, size: this.pageSize})
   }
 }

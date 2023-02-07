@@ -1,43 +1,51 @@
-<div class="table-responsive">
-  <table class="table table-striped align-middle" style="width:100%">
-    <thead>
-    <tr>
-      <th style="width:20%">Nombres</th>
-      <th style="width:30%">Afiliaciones</th>
-      <th style="width:10%">Artículos</th>
-      <th style="width:40%">Tópicos</th>
-    </tr>
-    </thead>
-    <tbody class="table-group-divider">
-    <tr class="table-row" *ngFor="let result of authors">
-      <td>
-        <li style="list-style-type:none;" *ngFor="let name of result.names.split(',')">{{name}}</li>
-      </td>
-      <td>
-        <li style="list-style-type:none;"
-            *ngFor="let affiliation of result.affiliations.split(',')">{{affiliation}}</li>
-      </td>
-      <td>{{result.articles}}</td>
-      <td>{{result.topics}}</td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-<div class="d-flex justify-content-between flex-wrap">
-  <ngb-pagination
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [pageSize]="pageSize"
-    [maxSize]="4"
-    [rotate]="true"
-    [ellipses]="false"
-    [boundaryLinks]="true"
-    (pageChange)="refreshTable()"
-  ></ngb-pagination>
+<ng-container  *ngIf="(authors$ | async) as dataTable">
 
-  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
-    <option [ngValue]="2">2 items por página</option>
-    <option [ngValue]="4">4 items por página</option>
-    <option [ngValue]="6">6 items por página</option>
-  </select>
-</div>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle" style="width:100%">
+      <thead>
+      <tr>
+        <th style="width:20%">Nombres</th>
+        <th style="width:30%">Afiliaciones</th>
+        <th style="width:10%">Artículos</th>
+        <th style="width:40%">Tópicos</th>
+      </tr>
+      </thead>
+      <tbody class="table-group-divider">
+      <tr class="table-row" *ngFor="let result of dataTable.data"  [routerLink]="'/author/'+result.scopusId">
+        <td>
+          <li style="list-style-type:none;" *ngFor="let name of result.names">{{name}}</li>
+        </td>
+        <td>
+          <li style="list-style-type:none;"
+              *ngFor="let affiliation of result.affiliations">{{affiliation}}</li>
+        </td>
+        <td>{{result.articles}}</td>
+        <td>{{result.topics.join(', ')}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="d-flex justify-content-between flex-wrap">
+    <ngb-pagination
+      [collectionSize]="dataTable.total"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [maxSize]="4"
+      [rotate]="true"
+      [ellipses]="false"
+      [boundaryLinks]="true"
+      (pageChange)="onChangePagination()"
+    ></ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="onChangePagination()">
+      <option [ngValue]="2">2 items por página</option>
+      <option [ngValue]="4">4 items por página</option>
+      <option [ngValue]="6">6 items por página</option>
+    </select>
+  </div>
+
+
+</ng-container>
+
+

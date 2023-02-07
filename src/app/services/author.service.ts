@@ -1,165 +1,37 @@
 import {Injectable} from '@angular/core';
-import {AuthorResult} from "../interfaces/author.interface";
+import {AuthorResult, PaginationAuthorResult} from "../interfaces/author.interface";
+import {map, Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorService {
 
-  authorResults: AuthorResult[] = [
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Jorge Recalde, Recalde J., J. R.',
-      affiliations: 'Universidad San Francisco de Quito',
-      articles: 4,
-      topics: 'Tf-idf, Neo4j, Graph database'
-    },
-    {
-      names: 'Melany Recalde, Recalde M., M. R.',
-      affiliations: 'Escuela Politécnica del Ejercito, Escuela Politécnica del Ecuador, Universidad Politécnica Salesiana',
-      articles: 1,
-      topics: 'Machine Learning, IA Models, Artificial intelligence'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Jorge Recalde, Recalde J., J. R.',
-      affiliations: 'Universidad San Francisco de Quito',
-      articles: 4,
-      topics: 'Tf-idf, Neo4j, Graph database'
-    },
-    {
-      names: 'Melany Recalde, Recalde M., M. R.',
-      affiliations: 'Escuela Politécnica del Ejercito, Escuela Politécnica del Ecuador, Universidad Politécnica Salesiana',
-      articles: 1,
-      topics: 'Machine Learning, IA Models, Artificial intelligence'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Jorge Recalde, Recalde J., J. R.',
-      affiliations: 'Universidad San Francisco de Quito',
-      articles: 4,
-      topics: 'Tf-idf, Neo4j, Graph database'
-    },
-    {
-      names: 'Melany Recalde, Recalde M., M. R.',
-      affiliations: 'Escuela Politécnica del Ejercito, Escuela Politécnica del Ecuador, Universidad Politécnica Salesiana',
-      articles: 1,
-      topics: 'Machine Learning, IA Models, Artificial intelligence'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Jorge Recalde, Recalde J., J. R.',
-      affiliations: 'Universidad San Francisco de Quito',
-      articles: 4,
-      topics: 'Tf-idf, Neo4j, Graph database'
-    },
-    {
-      names: 'Melany Recalde, Recalde M., M. R.',
-      affiliations: 'Escuela Politécnica del Ejercito, Escuela Politécnica del Ecuador, Universidad Politécnica Salesiana',
-      articles: 1,
-      topics: 'Machine Learning, IA Models, Artificial intelligence'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    },
-    {
-      names: 'Lorena Recalde, Recalde L., L.',
-      affiliations: 'Escuela Politécnica Nacional',
-      articles: 11,
-      topics: 'Housing needs, Graph analysis, Cognitive cities, Urban planing, Collective intelligence, Artificial intelligence, Machine learning'
-    },
-    {
-      names: 'Efraín Recalde, Recalde E., E. R.',
-      affiliations: 'Escuela Politécnica Nacional, Universad Central del Ecuador',
-      articles: 7,
-      topics: 'Videogames, Interactive Learning, Educational Software'
-    }
-  ]
+  rootURL: string = environment.apiUrl
 
-
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
 
-  getAuthorsByQuery(): AuthorResult[] {
-    return this.authorResults
+  getAuthorsByQuery(query: string, page: number, size: number): Observable<PaginationAuthorResult> {
+    return this.http.get<PaginationAuthorResult>(`${this.rootURL}author/get-authors-by-query?query=${query}&page=${page}&size=${size}`)
+      .pipe(map((response) => {
+        let mappedData = response.data.map((author) => {
+          return this.mapAuthorTopics(author)
+        })
+        return {data: mappedData, total: response.total}
+      }))
+  }
+
+
+  mapAuthorTopics(author: AuthorResult) {
+    if (author.topics.length > 10) {
+      author.topics = author.topics.splice(0, 10)
+      author.topics.push('...')
+    }
+    return author
   }
 
 }

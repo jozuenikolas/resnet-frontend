@@ -1,6 +1,12 @@
 export interface AuthorResult {
-  names: string,
-  affiliations: string,
-  articles: number,
-  topics: string
+  scopusId: number
+  names: string[]
+  affiliations: string[]
+  articles: number
+  topics: string[]
+}
+
+export interface PaginationAuthorResult {
+  data: AuthorResult[]
+  total: number
 }
