@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./pages/home/home.component";
 import {AboutComponent} from "./pages/about/about.component";
 import {AuthorProfileComponent} from "./pages/author-profile/author-profile.component";
+import {AuthorResolver} from "./resolvers/author.resolver";
 
 const routes: Routes = [
   {
@@ -14,8 +15,11 @@ const routes: Routes = [
     component: AboutComponent,
   },
   {
-    path: 'author/:scopusId',
+    path: 'author/:id',
     component: AuthorProfileComponent,
+    resolve: {
+      author: AuthorResolver
+    },
   },
   {
     path: '**',

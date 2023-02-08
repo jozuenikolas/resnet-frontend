@@ -19,6 +19,9 @@ import {SearchComponent} from './components/search/search.component';
 import {AuthorsTableComponent} from './components/authors-table/authors-table.component';
 import {AuthorProfileComponent} from './pages/author-profile/author-profile.component';
 
+/* Resolvers */
+import {AuthorResolver} from "./resolvers/author.resolver";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,9 @@ import {AuthorProfileComponent} from './pages/author-profile/author-profile.comp
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthorResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

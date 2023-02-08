@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {Author} from "../../interfaces/author.interface";
 
 @Component({
   selector: 'app-author-profile',
@@ -6,5 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./author-profile.component.scss']
 })
 export class AuthorProfileComponent {
+
+  author!: Author
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.setAuthor()
+  }
+
+  setAuthor() {
+    const {author} = this.activatedRoute.snapshot.data
+    if (!author) return;
+    this.author = {...author}
+  }
 
 }

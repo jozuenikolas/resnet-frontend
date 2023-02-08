@@ -1,1 +1,66 @@
-<p>author-profile works!</p>
+<div class="container-lg d-flex flex-column py-5">
+
+  <!-- Información general -->
+  <div class="d-flex flex-column mb-5 pb-3">
+    <h2>Información general</h2>
+    <hr>
+
+    <div class="row">
+      <div class="col d-flex flex-column mb-3">
+        <h6 class="label">Nombre</h6>
+        <h6 class="text">{{author.firstName}}</h6>
+      </div>
+      <div class="col d-flex flex-column mb-3">
+        <h6 class="label">Apellido</h6>
+        <h6 class="text">{{author.lastName}}</h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col d-flex flex-column mb-3">
+        <h6 class="label">Nombre de autor</h6>
+        <h6 class="text">{{author.authName}}</h6>
+      </div>
+      <div class="col d-flex flex-column mb-3">
+        <h6 class="label">Iniciales</h6>
+        <h6 class="text">{{author.initials}}</h6>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col d-flex flex-column ">
+        <h6 class="label">Afiliaciones</h6>
+        <ul>
+          <li *ngFor="let affiliation of author.affiliations" class="text">
+            {{affiliation}}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <a href="https://www.scopus.com/authid/detail.uri?authorId={{author.scopusId}}">Perfil de Scopus</a>
+    </div>
+
+
+  </div>
+
+  <!-- Artículos -->
+  <div class="d-flex flex-column mb-5 pb-3">
+    <h2>Artículos</h2>
+    <hr>
+    <ul class="articles-container">
+      <li *ngFor="let article of author.articles" class="text mb-6">
+        {{article.title}}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Coautores -->
+  <div class="d-flex flex-column">
+    <h2>Coautores</h2>
+    <hr>
+  </div>
+
+
+</div>

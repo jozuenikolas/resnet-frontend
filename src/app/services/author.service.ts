@@ -13,8 +13,7 @@ export class AuthorService {
 
   constructor(private http: HttpClient) {
   }
-
-
+  
   getAuthorsByQuery(query: string, page: number, size: number): Observable<PaginationAuthorResult> {
     return this.http.get<PaginationAuthorResult>(`${this.rootURL}author/get-authors-by-query?query=${query}&page=${page}&size=${size}`)
       .pipe(map((response) => {
@@ -25,6 +24,9 @@ export class AuthorService {
       }))
   }
 
+  getAuthorById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.rootURL}author/${id}`)
+  }
 
   mapAuthorTopics(author: AuthorResult) {
     if (author.topics.length > 10) {

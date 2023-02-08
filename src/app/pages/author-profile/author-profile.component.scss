@@ -1,0 +1,51 @@
+h2 {
+  font-size: calc(1.475rem + 1.2vw);
+  font-weight: 500;
+}
+
+.label {
+  font-size: calc(1.475rem + 0.1vw);
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text {
+  font-size: calc(1.475rem + 0.1vw);
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.articles-container {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.articles-container::-webkit-scrollbar {
+  display: none;
+}
+
+.articles-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (min-width: 1200px) {
+  h2 {
+    font-size: 3rem
+  }
+
+  .label {
+    font-size: 1.6rem
+
+  }
+
+  .text {
+    font-size: 1.6rem
+  }
+}
