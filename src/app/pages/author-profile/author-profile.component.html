@@ -39,7 +39,8 @@
     </div>
 
     <div class="d-flex justify-content-end">
-      <a href="https://www.scopus.com/authid/detail.uri?authorId={{author.scopusId}}">Perfil de Scopus</a>
+      <a class="scopus-profile" href="https://www.scopus.com/authid/detail.uri?authorId={{author.scopusId}}">Perfil de
+        Scopus</a>
     </div>
 
 
@@ -50,7 +51,7 @@
     <h2>Artículos</h2>
     <hr>
     <ul class="articles-container">
-      <li *ngFor="let article of author.articles" class="text mb-6">
+      <li *ngFor="let article of author.articles" class="text mb-6" (click)="openModal(content, article.scopusId)">
         {{article.title}}
       </li>
     </ul>
@@ -64,3 +65,53 @@
 
 
 </div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4>Detalles del artículo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex flex-column gap-3 p-3">
+      <div>
+        <h6 class="label-modal">Título</h6>
+        <h6 class="text-modal">{{article.title}}</h6>
+      </div>
+
+      <div *ngIf="article.abstract">
+        <h6 class="label-modal">Abstract</h6>
+        <h6 class="text-modal text-justify">{{article.abstract}}</h6>
+      </div>
+
+      <div>
+        <h6 class="label-modal">Autores</h6>
+        <ul>
+          <li *ngFor="let author of article.authors" class="text-modal">
+            <a class="author-modal" href="/author/{{author.scopusId}}">{{author.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h6 class="label-modal">Afiliaciones</h6>
+        <ul>
+          <li *ngFor="let affiliation of article.affiliations" class="text-modal">
+            {{affiliation}}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="article.topics.length > 0">
+        <h6 class="label-modal">Tópicos</h6>
+        <ul>
+          <li *ngFor="let topic of article.topics" class="text-modal">
+            {{topic}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</ng-template>

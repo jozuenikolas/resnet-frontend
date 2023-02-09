@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthorResult, PaginationAuthorResult} from "../interfaces/author.interface";
+import {Author, AuthorResult, PaginationAuthorResult} from "../interfaces/author.interface";
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -13,9 +13,9 @@ export class AuthorService {
 
   constructor(private http: HttpClient) {
   }
-  
+
   getAuthorsByQuery(query: string, page: number, size: number): Observable<PaginationAuthorResult> {
-    return this.http.get<PaginationAuthorResult>(`${this.rootURL}author/get-authors-by-query?query=${query}&page=${page}&size=${size}`)
+    return this.http.get<PaginationAuthorResult>(`${this.rootURL}authors/get-authors-by-query?query=${query}&page=${page}&size=${size}`)
       .pipe(map((response) => {
         let mappedData = response.data.map((author) => {
           return this.mapAuthorTopics(author)
@@ -24,8 +24,8 @@ export class AuthorService {
       }))
   }
 
-  getAuthorById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.rootURL}author/${id}`)
+  getAuthorById(id: number): Observable<Author> {
+    return this.http.get<Author>(`${this.rootURL}author/${id}`)
   }
 
   mapAuthorTopics(author: AuthorResult) {
