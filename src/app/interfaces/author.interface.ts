@@ -21,3 +21,10 @@ export interface Author {
   affiliations: string[]
   articles: { scopusId: number, title: string }[]
 }
+
+export interface Coauthors {
+  links: { source: string, target: string, collabStrength: string }[]
+  nodes: { scopusId: string, initials: string, firstName: string, lastName: string }[]
+}
+
+

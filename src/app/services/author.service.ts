@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Author, AuthorResult, PaginationAuthorResult} from "../interfaces/author.interface";
+import {Author, AuthorResult, Coauthors, PaginationAuthorResult} from "../interfaces/author.interface";
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -26,6 +26,10 @@ export class AuthorService {
 
   getAuthorById(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.rootURL}author/${id}`)
+  }
+
+  getCoauthorsById(id: number):Observable<Coauthors>{
+    return this.http.get<Coauthors>(`${this.rootURL}coauthors/${id}`)
   }
 
   mapAuthorTopics(author: AuthorResult) {

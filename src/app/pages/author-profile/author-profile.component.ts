@@ -13,8 +13,9 @@ import {Article} from "../../interfaces/article.interface";
 export class AuthorProfileComponent {
 
   author!: Author
-
   article!: Article
+
+  showCoauthorsGraph: boolean = false
 
   constructor(private activatedRoute: ActivatedRoute,
               private modalService: NgbModal,

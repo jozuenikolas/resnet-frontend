@@ -21,6 +21,11 @@ import {AuthorProfileComponent} from './pages/author-profile/author-profile.comp
 
 /* Resolvers */
 import {AuthorResolver} from "./resolvers/author.resolver";
+import {SHARED_VISUALS} from "./visuals/shared";
+import {D3_DIRECTIVES} from "./d3/directives";
+import {D3Service} from "./d3";
+import {CoauthorsGraphComponent} from "./components/coauthors-graph/coauthors-graph.component";
+import {GraphComponent} from "./visuals/graph/graph.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +37,11 @@ import {AuthorResolver} from "./resolvers/author.resolver";
     FooterComponent,
     SearchComponent,
     AuthorsTableComponent,
-    AuthorProfileComponent
+    AuthorProfileComponent,
+    GraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
+    CoauthorsGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,8 @@ import {AuthorResolver} from "./resolvers/author.resolver";
     HttpClientModule
   ],
   providers: [
-    AuthorResolver
+    AuthorResolver,
+    D3Service
   ],
   bootstrap: [AppComponent]
 })
