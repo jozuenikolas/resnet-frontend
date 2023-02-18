@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Link, Node} from "../../d3";
 import {AuthorService} from "../../services/author.service";
-import {Author} from "../../interfaces/author.interface";
+import {Author, AuthorNode} from "../../interfaces/author.interface";
 
 @Component({
   selector: 'app-coauthors-graph',
@@ -15,7 +15,7 @@ export class CoauthorsGraphComponent {
   d3Nodes: Node[] = []
   d3Links: Link[] = []
 
-  apiNodes: { scopusId: string, initials: string, firstName: string, lastName: string }[] = []
+  apiNodes: AuthorNode[] = []
 
   showGraph: boolean = false
 
@@ -26,7 +26,7 @@ export class CoauthorsGraphComponent {
     this.authorService.getCoauthorsById(this.author.scopusId).subscribe((coauthors) => {
       this.apiNodes = coauthors.nodes
       this.apiNodes.push({
-        scopusId: this.author.scopusId.toString(),
+        scopusId: this.author.scopusId,
         initials: this.author.initials,
         firstName: this.author.firstName,
         lastName: this.author.lastName
@@ -42,17 +42,18 @@ export class CoauthorsGraphComponent {
       this.d3Nodes.push(new Node(node.scopusId, this.apiNodes.length, node.initials, {
         enablePopover: true,
         title: 'Autor',
-        content: node.firstName + " " + node.lastName
+        content: node.firstName + " " + node.lastName,
+        link: 'author/' + node.scopusId
       }))
     })
     console.log(this.d3Nodes)
   }
 
-  setupLinks(links: { source: string, target: string, collabStrength: string }[]) {
+  setupLinks(links: { source: number, target: number, collabStrength: number }[]) {
     links.forEach(link => {
-      this.d3Nodes[this.getIndexByScopusId(link.source)].linkCount++
-      this.d3Nodes[this.getIndexByScopusId(link.target)].linkCount++
-      this.d3Links.push(new Link(link.source, link.target, link.collabStrength))
+      this.d3Nodes[this.getIndexByScopusId(link.source)].degree++
+      this.d3Nodes[this.getIndexByScopusId(link.target)].degree++
+      this.d3Links.push(new Link(link.source, link.target, link.collabStrength * 5))
     })
     console.log(this.d3Links)
   }

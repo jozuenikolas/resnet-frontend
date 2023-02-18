@@ -5,11 +5,11 @@ import { Link } from '../../../d3';
   selector: '[linkVisual]',
   template: `
     <svg:line (click)="onAristeClick()"
-        style="stroke-width:{{link.collabStrength*5}}; stroke: rgb(0, 0, 0)"
-        [attr.x1]="link.source.x"
-        [attr.y1]="link.source.y"
-        [attr.x2]="link.target.x"
-        [attr.y2]="link.target.y"
+              style="stroke-width:{{link.strokeWidth}}; stroke: rgb(0, 0, 0)"
+              [attr.x1]="link.source.x"
+              [attr.y1]="link.source.y"
+              [attr.x2]="link.target.x"
+              [attr.y2]="link.target.y"
     ></svg:line>
   `,
   styleUrls: ['./link-visual.component.scss']
@@ -17,8 +17,7 @@ import { Link } from '../../../d3';
 export class LinkVisualComponent  {
   @Input('linkVisual') link: Link;
 
-
   onAristeClick(){
-    console.log(this.link.collabStrength)
+    console.log(this.link.strokeWidth)
   }
 }

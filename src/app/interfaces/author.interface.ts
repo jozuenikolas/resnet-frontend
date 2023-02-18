@@ -23,8 +23,17 @@ export interface Author {
 }
 
 export interface Coauthors {
-  links: { source: string, target: string, collabStrength: string }[]
-  nodes: { scopusId: string, initials: string, firstName: string, lastName: string }[]
+  links: { source: number, target: number, collabStrength: number }[]
+  nodes: AuthorNode[]
 }
 
+export interface AuthorNode {
+  scopusId: number,
+  initials: string,
+  firstName: string,
+  lastName: string
+}
+
+
+//{ scopusId: string, initials: string, firstName: string, lastName: string }
 

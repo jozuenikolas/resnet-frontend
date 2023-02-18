@@ -11,26 +11,27 @@ export class D3Service {
   }
 
   /** A method to bind a pan and zoom behaviour to an svg element */
-  applyZoomableBehaviour(svgElement, containerElement) {
-    let svg, container, zoom;
+  applyZoomableBehaviour(svgElement: HTMLElement, containerElement: any) {
+    let svg, container: d3.Selection<any, unknown, null, undefined>, zoom;
 
     svg = d3.select(svgElement);
     container = d3.select(containerElement);
 
-    function zoomed(e) {
+    function zoomed(e: any) {
       const transform = e.transform;
       container.attr('transform', 'translate(' + transform.x + ',' + transform.y + ') scale(' + transform.k + ')');
     }
 
     zoom = d3.zoom().on('zoom', zoomed);
+    // @ts-ignore
     svg.call(zoom);
   }
 
   /** A method to bind a draggable behaviour to an svg element */
-  applyDraggableBehaviour(element, node: Node, graph: ForceDirectedGraph) {
+  applyDraggableBehaviour(element: any, node: Node, graph: ForceDirectedGraph) {
     const d3element = d3.select(element);
 
-    function started(e) {
+    function started(e: any) {
       /** Preventing propagation of dragstart to parent elements */
       e.sourceEvent.stopPropagation();
 
@@ -40,12 +41,12 @@ export class D3Service {
 
       e.on('drag', dragged).on('end', ended);
 
-      function dragged(e) {
+      function dragged(e: any) {
         node.fx = e.x;
         node.fy = e.y;
       }
 
-      function ended(e) {
+      function ended(e: any) {
         if (!e.active) {
           graph.simulation.alphaTarget(0);
         }
@@ -63,7 +64,7 @@ export class D3Service {
   /** The interactable graph we will simulate in this article
    * This method does not interact with the document, purely physical calculations with d3
    */
-  getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height }) {
+  getForceDirectedGraph(nodes: Node[], links: Link[], options: { width: number, height: number }) {
     return new ForceDirectedGraph(nodes, links, options);
   }
 }

@@ -12,39 +12,39 @@ export class Node implements d3.SimulationNodeDatum {
 
   totalNodes: number = 0
 
-  id: string;
-  linkCount: number = 0;
+  id: string | number;
+  degree: number = 0;
   label: string
 
+  popover: PopoverNode
 
-  popover: {
-    enablePopover: boolean
-    title?: string
-    content?: string
-  }
-
-  constructor(id, totalNodes, label?, popover?) {
+  constructor(id: string | number, totalNodes: number, label: string, popover: PopoverNode) {
     this.id = id;
     this.totalNodes = totalNodes
     this.label = label
     this.popover = popover
   }
-
   normal = () => {
-    return Math.sqrt(this.linkCount / this.totalNodes);
+    return Math.sqrt(this.degree / this.totalNodes);
   }
 
   get r() {
-    return this.normal() === 0? 60: 50 * this.normal() + 10;
+    return this.normal() === 0 ? 60 : 50 * this.normal() + 10;
   }
 
   get fontSize() {
-    return '20px';
+    return this.normal() === 0 ? 40 : (30 * this.normal() + 10) + 'px';
   }
 
   get color() {
-    // let index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
-    let index = Math.ceil(APP_CONFIG.SPECTRUM.length * (this.linkCount / this.totalNodes));
-    return APP_CONFIG.SPECTRUM[index - 1];
+    let index = Math.ceil((this.degree * (APP_CONFIG.SPECTRUM.length - 1)) / (this.totalNodes - 1))
+    return APP_CONFIG.SPECTRUM[index];
   }
+}
+
+export interface PopoverNode {
+  enablePopover: boolean
+  title?: string
+  content?: string
+  link?: string
 }

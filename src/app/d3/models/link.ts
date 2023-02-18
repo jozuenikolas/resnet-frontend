@@ -8,13 +8,14 @@ export class Link implements d3.SimulationLinkDatum<Node> {
   source: Node;
   target: Node;
 
-  collabStrength: number
+  strokeWidth: number
 
-  constructor(source, target, collabStrength?) {
+  constructor(source: Node | string | number, target: Node | string | number, strokeWidth: number) {
+    // @ts-ignore
     this.source = source;
+
+    // @ts-ignore
     this.target = target;
-    this.collabStrength = Number(collabStrength)
-    /*console.log("source", this.source)
-    console.log("target", this.target)*/
+    this.strokeWidth = strokeWidth
   }
 }

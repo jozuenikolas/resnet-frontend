@@ -1,5 +1,13 @@
-import { Component, Input, ChangeDetectorRef, HostListener, ChangeDetectionStrategy, OnInit, AfterViewInit } from '@angular/core';
-import { D3Service, ForceDirectedGraph, Node } from '../../d3';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Input,
+  OnInit
+} from '@angular/core';
+import {D3Service, ForceDirectedGraph, Link, Node} from '../../d3';
 
 @Component({
   selector: 'graph',
@@ -9,25 +17,26 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
       <g [zoomableOf]="svg" class="my-border">
         <g [linkVisual]="link" *ngFor="let link of links"></g>
         <g [nodeVisual]="node" *ngFor="let node of nodes"
-            [draggableNode]="node" [draggableInGraph]="graph"></g>
+           [draggableNode]="node" [draggableInGraph]="graph"></g>
       </g>
     </svg>
   `,
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit, AfterViewInit {
-  @Input('nodes') nodes;
-  @Input('links') links;
+  @Input('nodes') nodes: Node[];
+  @Input('links') links: Link[];
   graph: ForceDirectedGraph;
-  private _options: { width, height } = { width: 800, height: 600 };
+  private _options: { width: number, height: number } = {width: 800, height: 600};
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event: any) {
     this.graph.initSimulation(this.options);
   }
 
 
-  constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {}
+  constructor(private d3Service: D3Service, private ref: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */

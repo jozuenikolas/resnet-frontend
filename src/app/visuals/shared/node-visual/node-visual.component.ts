@@ -1,11 +1,18 @@
 import {Component, Input} from '@angular/core';
 import {Node} from '../../../d3';
+import {Router} from "@angular/router";
+import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: '[nodeVisual]',
   template: `
     <ng-template #popTitle>{{node.popover.title}}</ng-template>
-    <ng-template #popContent>{{node.popover.content}}</ng-template>
+    <ng-template #popContent>
+      <a *ngIf="node.popover.link; else elseLink" [href]="node.popover.link">
+        {{node.popover.content}}
+      </a>
+      <ng-template #elseLink>{{node.popover.content}}</ng-template>
+    </ng-template>
 
 
     <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
@@ -34,17 +41,11 @@ import {Node} from '../../../d3';
 export class NodeVisualComponent {
   @Input('nodeVisual') node: Node;
 
-  name = 'World';
-
-  toggleWithGreeting(popover, greeting: string, language: string) {
-    if (popover.isOpen()) {
-      popover.close();
-    } else {
-      popover.open({greeting, language});
-    }
+  constructor(private router: Router) {
   }
 
-  togglePopover(popover) {
+  togglePopover(popover: NgbPopover) {
+    console.log(this.node)
     if (this.node.popover.enablePopover) {
       if (popover.isOpen()) {
         popover.close();
@@ -52,5 +53,9 @@ export class NodeVisualComponent {
         popover.open();
       }
     }
+  }
+
+  navigate() {
+    this.router.navigate(['author', this.node.id])
   }
 }
