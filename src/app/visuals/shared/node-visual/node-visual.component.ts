@@ -9,12 +9,13 @@ import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
     <ng-template #popTitle>{{node.popover.title}}</ng-template>
     <ng-template #popContent>
       <a *ngIf="node.popover.link; else elseLink" [href]="node.popover.link">
-        {{node.popover.content}}
+        <b>Nombre:</b> {{node.popover.content}}
       </a>
+      <div><b>Grado:</b> {{node.degree}}</div>
+      <ng-container *ngIf="node.weight"><b>Peso:</b> {{node.weight}}</ng-container>
       <ng-template #elseLink>{{node.popover.content}}</ng-template>
     </ng-template>
-
-
+    
     <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
            [ngbPopover]="popContent"
            [popoverTitle]="popTitle"

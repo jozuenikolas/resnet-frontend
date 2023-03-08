@@ -14,7 +14,7 @@
       </button>
     </div>
   </div>
-  <input class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue">
+  <input class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue" (keyup)="onEnter($event)">
   <button type="button" class="btn btn-primary btn-search" (click)="this.search.emit({
       option: this.selectedOption.code,
       query: this.inputValue

@@ -28,8 +28,22 @@ export class AuthorService {
     return this.http.get<Author>(`${this.rootURL}author/${id}`)
   }
 
-  getCoauthorsById(id: number):Observable<Coauthors>{
+  getCoauthorsById(id: number): Observable<Coauthors> {
     return this.http.get<Coauthors>(`${this.rootURL}coauthors/${id}`)
+  }
+
+  getMostRelevantAuthors(topic: string, authorsNumber: number, typeFilter?: string, affiliations?: number[]): Observable<Coauthors> {
+    let bodyParams: any = {
+      topic: topic,
+      authorsNumber: authorsNumber,
+    }
+
+    if (typeFilter) {
+      bodyParams['type'] = typeFilter
+      bodyParams['affiliations'] = affiliations
+    }
+
+    return this.http.post<Coauthors>(`${this.rootURL}coauthors/most-relevant-authors`, bodyParams)
   }
 
   mapAuthorTopics(author: AuthorResult) {

@@ -11,7 +11,6 @@ export interface PaginationAuthorResult {
   total: number
 }
 
-
 export interface Author {
   scopusId: number
   firstName: string
@@ -25,13 +24,16 @@ export interface Author {
 export interface Coauthors {
   links: { source: number, target: number, collabStrength: number }[]
   nodes: AuthorNode[]
+  affiliations: { scopusId: number, name: string }[]
 }
 
+
 export interface AuthorNode {
-  scopusId: number,
-  initials: string,
-  firstName: string,
+  scopusId: number
+  initials: string
+  firstName: string
   lastName: string
+  weight: number
 }
 
 

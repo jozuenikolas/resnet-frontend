@@ -26,6 +26,7 @@ import {D3Service, ForceDirectedGraph, Link, Node} from '../../d3';
 export class GraphComponent implements OnInit, AfterViewInit {
   @Input('nodes') nodes: Node[];
   @Input('links') links: Link[];
+  @Input('forces') forces: any;
   graph: ForceDirectedGraph;
   private _options: { width: number, height: number } = {width: 800, height: 600};
 
@@ -40,7 +41,7 @@ export class GraphComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     /** Receiving an initialized simulated graph from our custom d3 service */
-    this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+    this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options, this.forces);
 
     /** Binding change detection check on each tick
      * This along with an onPush change detection strategy should enforce checking only when relevant!

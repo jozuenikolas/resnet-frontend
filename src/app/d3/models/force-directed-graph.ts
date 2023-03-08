@@ -15,11 +15,12 @@ export class ForceDirectedGraph {
 
   public nodes: Node[] = [];
   public links: Link[] = [];
+  public forces: { manyBody: number, collide: number }
 
-  constructor(nodes: Node[], links: Link[], options: { width: number, height: number }) {
+  constructor(nodes: Node[], links: Link[], options: { width: number, height: number }, forces: { manyBody: number, collide: number }) {
     this.nodes = nodes;
     this.links = links;
-
+    this.forces = forces
     this.initSimulation(options);
   }
 
@@ -43,6 +44,9 @@ export class ForceDirectedGraph {
           // @ts-ignore
           return d['id']
         })
+      /*.strength(d =>{
+        return d['strokeWidth'] / 100
+      })*/
       // .strength(FORCES.LINKS)
       // .strength(1 / (this.nodes.length * 10))
     );
@@ -62,7 +66,7 @@ export class ForceDirectedGraph {
           d3.forceManyBody()
             .strength(d => {
               // @ts-ignore
-              return FORCES.CHARGE * d['r']
+              return FORCES.CHARGE * d['r'] * this.forces.manyBody
             })
         )
         .force('collide',
@@ -70,7 +74,7 @@ export class ForceDirectedGraph {
             .strength(FORCES.COLLISION)
             .radius(d => {
               // @ts-ignore
-              return d['r'] + 35
+              return d['r'] + this.forces.collide
             })
             .iterations(2)
         );

@@ -21,4 +21,11 @@ export class SearchComponent {
 
   @Output() search: EventEmitter<Search> = new EventEmitter<Search>()
 
+  onEnter(event: KeyboardEvent) {
+    if (event.code === 'Enter')
+      this.search.emit({
+        option: this.selectedOption.code,
+        query: this.inputValue
+      })
+  }
 }

@@ -61,11 +61,17 @@
   <div class="d-flex flex-column">
     <h2>Coautores</h2>
     <hr>
-    <div *ngIf="!showCoauthorsGraph" class="d-flex justify-content-center py-5">
-      <button type="button" class="btn btn-primary btn-lg" (click)="showCoauthorsGraph=true">Visualizar grafo</button>
-    </div>
 
-    <app-coauthors-graph *ngIf="showCoauthorsGraph" [author]="author" ></app-coauthors-graph>
+    <ng-container *ngIf="showCoauthorsGraph; else elseCoauthorsGraph">
+      <app-coauthors-graph [author]="author"></app-coauthors-graph>
+    </ng-container>
+
+    <ng-template #elseCoauthorsGraph>
+      <div class="d-flex justify-content-center py-5">
+        <button type="button" class="btn btn-primary btn-lg" (click)="showCoauthorsGraph=true">Visualizar grafo</button>
+      </div>
+    </ng-template>
+
 
   </div>
 

@@ -17,6 +17,8 @@ export class CoauthorsGraphComponent {
 
   apiNodes: AuthorNode[] = []
 
+  forces: { manyBody: number, collide: number } = {manyBody: 50, collide: 100}
+
   showGraph: boolean = false
 
   constructor(private authorService: AuthorService) {
@@ -29,7 +31,8 @@ export class CoauthorsGraphComponent {
         scopusId: this.author.scopusId,
         initials: this.author.initials,
         firstName: this.author.firstName,
-        lastName: this.author.lastName
+        lastName: this.author.lastName,
+        weight: 0
       })
       this.setupNodes()
       this.setupLinks(coauthors.links)

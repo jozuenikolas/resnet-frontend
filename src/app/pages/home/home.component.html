@@ -6,21 +6,21 @@
 </div>
 
 <!-- Results -->
-<div *ngIf="searchValue?.query" class="container d-flex flex-column mb-5">
+<div *ngIf="searchValue?.query">
 
   <!-- Author Results -->
   <ng-container *ngIf="searchValue.option=='au'">
-    <app-authors-table query="{{searchValue.query}}"></app-authors-table>
+    <app-authors-table query="{{searchValue.query}}" class="container d-flex flex-column mb-5"></app-authors-table>
   </ng-container>
 
   <!-- Most Relevant Authors Results -->
   <ng-container *ngIf="searchValue.option=='mrau'">
-    <label>Most Relevant Authors Results</label>
+    <app-most-relevant-authors-graph query="{{searchValue.query}}"></app-most-relevant-authors-graph>
   </ng-container>
 
   <!-- Most Relevant Articles Results -->
   <ng-container *ngIf="searchValue.option=='mrar'">
-    <label>Most Relevant Articles Results</label>
+    <app-most-relevant-articles-table query="{{searchValue.query}}"></app-most-relevant-articles-table>
   </ng-container>
 
 </div>

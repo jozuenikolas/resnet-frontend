@@ -1,0 +1,139 @@
+<div class="row justify-content-between m-0 px-2" style="grid-gap: 1.5rem 0">
+
+  <!--#region FILTERS-->
+  <div *ngIf="years && years.length > 0" class="col-lg-2 px-0">
+    <div class="filters">
+
+      <!-- Title -->
+      <div class="text-center border-bot py-3 title">
+        FILTROS
+      </div>
+
+      <!-- Years -->
+      <div class="border-bot py-2 px-3 subtitle">
+        Año de publicación
+      </div>
+      <div class="d-flex flex-nowrap justify-content-between pt-3 px-3">
+        <button class="btn btn-primary filter-button" (click)="onClickYearsFilter('include')">Incluir</button>
+        <button class="btn btn-primary filter-button" (click)="onClickYearsFilter('exclude')">Excluir</button>
+      </div>
+      <div class="py-3 px-3 d-flex flex-column gap-3">
+        <div class="d-flex flex-nowrap gap-3" *ngFor="let year of years">
+          <input [id]="year" type="checkbox" (click)="onClickCheckbox($event)">
+          <label [for]="year">{{year}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--#endregion-->
+
+  <!--#region TABLE-->
+  <div *ngIf="(articles$ | async) as dataTable" class="col-lg-9">
+    <div class="mb-3">
+      Resultados: <b>{{dataTable.total}}</b>
+    </div>
+
+    <ng-container *ngIf="dataTable.total > 0">
+      <div class="table-responsive">
+
+        <table class="table table-striped align-middle" style="width:100%">
+          <thead>
+          <tr>
+            <th style="width:60%">Título</th>
+            <th style="width:28%">Autores</th>
+            <th style="width:12%">Fecha</th>
+          </tr>
+          </thead>
+
+          <tbody class="table-group-divider">
+          <tr class="table-row" *ngFor="let result of dataTable.data" (click)="openModal(content, result.scopusId)">
+            <td>{{result.title}}</td>
+            <td>{{result.authors.join(', ')}}</td>
+            <td>{{result.publicationDate}}</td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="d-flex justify-content-between flex-wrap">
+        <ngb-pagination
+          [collectionSize]="dataTable.total"
+          [(page)]="page"
+          [pageSize]="size"
+          [maxSize]="4"
+          [rotate]="true"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+          (pageChange)="onChangePagination()"
+        ></ngb-pagination>
+
+        <select class="form-select" style="width: auto" [(ngModel)]="size" (ngModelChange)="onChangePagination()">
+          <option [ngValue]="5">5 items por página</option>
+          <option [ngValue]="10">10 items por página</option>
+          <option [ngValue]="15">15 items por página</option>
+          <option [ngValue]="20">20 items por página</option>
+        </select>
+      </div>
+    </ng-container>
+  </div>
+  <!--#endregion-->
+
+</div>
+
+
+<!--#region ARTICLE MODAL-->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4>Detalles del artículo</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="d-flex flex-column gap-3 p-3">
+      <div>
+        <h6 class="label-modal">Título</h6>
+        <h6 class="text-modal">{{article.title}}</h6>
+      </div>
+
+      <div *ngIf="article.abstract">
+        <h6 class="label-modal">Abstract</h6>
+        <h6 class="text-modal text-justify">{{article.abstract}}</h6>
+      </div>
+
+      <div *ngIf="article.publicationDate">
+        <h6 class="label-modal">Fecha de publicación</h6>
+        <h6 class="text-modal text-justify">{{article.publicationDate}}</h6>
+      </div>
+
+      <div>
+        <h6 class="label-modal">Autores</h6>
+        <ul>
+          <li *ngFor="let author of article.authors" class="text-modal">
+            <a class="author-modal" href="/author/{{author.scopusId}}">{{author.name}}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h6 class="label-modal">Afiliaciones</h6>
+        <ul>
+          <li *ngFor="let affiliation of article.affiliations" class="text-modal">
+            {{affiliation}}
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="article.topics.length > 0">
+        <h6 class="label-modal">Tópicos</h6>
+        <ul>
+          <li *ngFor="let topic of article.topics" class="text-modal">
+            {{topic}}
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</ng-template>
+<!--#endregion-->

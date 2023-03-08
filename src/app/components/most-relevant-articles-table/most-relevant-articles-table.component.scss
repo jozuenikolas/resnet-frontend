@@ -1,0 +1,73 @@
+.filters {
+  border: 1px solid #000000;
+  background-color: var(--white);
+}
+
+.border-bot {
+  border-bottom: 1px solid #000000;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+}
+
+.filter-button {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+input[type=checkbox] {
+  -ms-transform: scale(1.9); /* IE */
+  -moz-transform: scale(1.9); /* FF */
+  -webkit-transform: scale(1.9); /* Safari and Chrome */
+  -o-transform: scale(1.9); /* Opera */
+  transform: scale(1.9);
+}
+
+table {
+  background-color: var(--white)
+}
+
+.table-row:hover {
+  //background-color: rgba(200, 196, 196, 0.5);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  color: #000000
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: var(--primary) !important;
+}
+
+
+.label-modal {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.text-modal {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.author-modal {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #212529;
+}

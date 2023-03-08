@@ -13,10 +13,10 @@ export class AuthorsTableComponent {
   @Input() query!: string
 
   page = 1;
-  pageSize = 4;
+  size = 4;
 
   refreshTable$: BehaviorSubject<{ page: number, size: number }>
-    = new BehaviorSubject<{ page: number, size: number }>({page: this.page, size: this.pageSize})
+    = new BehaviorSubject<{ page: number, size: number }>({page: this.page, size: this.size})
 
   authors$!: Observable<PaginationAuthorResult>
 
@@ -35,11 +35,11 @@ export class AuthorsTableComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['query']) {
-      this.refreshTable$.next({page: this.page, size: this.pageSize})
+      this.refreshTable$.next({page: this.page, size: this.size})
     }
   }
 
   onChangePagination() {
-    this.refreshTable$.next({page: this.page, size: this.pageSize})
+    this.refreshTable$.next({page: this.page, size: this.size})
   }
 }

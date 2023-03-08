@@ -26,6 +26,12 @@ import {D3_DIRECTIVES} from "./d3/directives";
 import {D3Service} from "./d3";
 import {CoauthorsGraphComponent} from "./components/coauthors-graph/coauthors-graph.component";
 import {GraphComponent} from "./visuals/graph/graph.component";
+import {
+  MostRelevantAuthorsGraphComponent
+} from './components/most-relevant-authors-graph/most-relevant-authors-graph.component';
+import {
+  MostRelevantArticlesTableComponent
+} from './components/most-relevant-articles-table/most-relevant-articles-table.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,9 @@ import {GraphComponent} from "./visuals/graph/graph.component";
     GraphComponent,
     ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    CoauthorsGraphComponent
+    CoauthorsGraphComponent,
+    MostRelevantAuthorsGraphComponent,
+    MostRelevantArticlesTableComponent
   ],
   imports: [
     BrowserModule,
