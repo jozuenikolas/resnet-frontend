@@ -15,7 +15,7 @@ import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
       <ng-container *ngIf="node.weight"><b>Peso:</b> {{node.weight}}</ng-container>
       <ng-template #elseLink>{{node.popover.content}}</ng-template>
     </ng-template>
-    
+
     <svg:g [attr.transform]="'translate(' + node.x + ',' + node.y + ')'"
            [ngbPopover]="popContent"
            [popoverTitle]="popTitle"

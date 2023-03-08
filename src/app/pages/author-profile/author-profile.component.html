@@ -1,6 +1,6 @@
 <div class="container-lg d-flex flex-column py-5">
 
-  <!-- Información general -->
+  <!--#region General Information-->
   <div class="d-flex flex-column mb-5 pb-3">
     <h2>Información general</h2>
     <hr>
@@ -45,8 +45,9 @@
 
 
   </div>
+  <!--#endregion-->
 
-  <!-- Artículos -->
+  <!--#region Articles-->
   <div class="d-flex flex-column mb-5 pb-3">
     <h2>Artículos</h2>
     <hr>
@@ -56,8 +57,22 @@
       </li>
     </ul>
   </div>
+  <!--#endregion-->
 
-  <!-- Coautores -->
+  <!--#region Topics-->
+  <div class="d-flex flex-column mb-5 pb-3">
+    <h2>Tópicos</h2>
+    <hr>
+    <div class="d-flex flex-wrap gap-5 topics-container justify-content-between">
+      <span class="badge text-bg-secondary topic" *ngFor="let topic of author.topics">
+        <a [href]="'/home?option=mrau&query='+topic">{{topic}}</a>
+      </span>
+    </div>
+
+  </div>
+  <!--#endregion-->
+
+  <!--#region Coauthors-->
   <div class="d-flex flex-column">
     <h2>Coautores</h2>
     <hr>
@@ -74,11 +89,12 @@
 
 
   </div>
+  <!--#endregion-->
 
 
 </div>
 
-
+<!--#region Article Modal-->
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4>Detalles del artículo</h4>
@@ -94,6 +110,11 @@
       <div *ngIf="article.abstract">
         <h6 class="label-modal">Abstract</h6>
         <h6 class="text-modal text-justify">{{article.abstract}}</h6>
+      </div>
+
+      <div *ngIf="article.publicationDate">
+        <h6 class="label-modal">Fecha de publicación</h6>
+        <h6 class="text-modal text-justify">{{article.publicationDate}}</h6>
       </div>
 
       <div>
@@ -127,3 +148,4 @@
   </div>
 
 </ng-template>
+<!--#endregion-->

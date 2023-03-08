@@ -19,6 +19,7 @@ export interface Author {
   initials: string
   affiliations: string[]
   articles: { scopusId: number, title: string }[]
+  topics: string []
 }
 
 export interface Coauthors {
