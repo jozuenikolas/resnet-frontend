@@ -2,9 +2,9 @@
   <div class="btn-group" ngbDropdown role="group">
     <button type="button" class="btn btn-danger btn-select" ngbDropdownToggle>
       <fa-icon [icon]="selectedOption.icon"></fa-icon>
-      <label class="d-none d-md-block">
+      <div class="d-none d-md-block">
         {{selectedOption.label}}
-      </label>
+      </div>
     </button>
     <div class="dropdown-menu" ngbDropdownMenu>
       <button ngbDropdownItem class="btn-option" *ngFor="let option of searchOptions"
@@ -14,12 +14,14 @@
       </button>
     </div>
   </div>
-  <input class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue" (keyup)="onEnter($event)">
+  <label for="inputQuery" class="sr-only">Search</label>
+  <input id="inputQuery" class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue"
+         (keyup)="onEnter($event)">
   <button type="button" class="btn btn-primary btn-search" (click)="this.search.emit({
       option: this.selectedOption.code,
       query: this.inputValue
     })">
     <fa-icon [icon]="faSearch"></fa-icon>
-    <label class="d-none d-md-block">Buscar</label>
+    <div class="d-none d-md-block">Buscar</div>
   </button>
 </div>

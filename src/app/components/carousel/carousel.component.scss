@@ -1,14 +1,8 @@
-label {
+h1 {
   font-size: calc(1.475rem + 2.7vw);
   line-height: 1.2;
   color: var(--white);
   font-weight: bold;
-}
-
-@media (min-width: 1200px) {
-  label {
-    font-size: 3.5rem
-  }
 }
 
 p {
@@ -17,6 +11,9 @@ p {
 }
 
 @media (min-width: 1200px) {
+  h1 {
+    font-size: 3.5rem
+  }
   p {
     font-size: 1.9rem
   }

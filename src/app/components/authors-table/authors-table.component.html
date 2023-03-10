@@ -17,7 +17,7 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-        <tr class="table-row" *ngFor="let result of dataTable.data" [routerLink]="'/author/'+result.scopusId">
+        <tr class="table-row" *ngFor="let result of dataTable.data" (click)="navigate(result.scopusId)">
           <td>
             <li style="list-style-type:none;" *ngFor="let name of result.names">{{name}}</li>
           </td>

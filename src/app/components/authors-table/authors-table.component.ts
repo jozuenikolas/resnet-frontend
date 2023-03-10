@@ -2,6 +2,7 @@ import {Component, Input, SimpleChanges} from '@angular/core';
 import {PaginationAuthorResult} from "../../interfaces/author.interface";
 import {AuthorService} from "../../services/author.service";
 import {BehaviorSubject, Observable, switchMap} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-authors-table',
@@ -20,7 +21,8 @@ export class AuthorsTableComponent {
 
   authors$!: Observable<PaginationAuthorResult>
 
-  constructor(private authorService: AuthorService) {
+  constructor(private authorService: AuthorService,
+              private router: Router) {
   }
 
 
@@ -41,5 +43,9 @@ export class AuthorsTableComponent {
 
   onChangePagination() {
     this.refreshTable$.next({page: this.page, size: this.size})
+  }
+
+  navigate(id: number) {
+    window.open('/author/' + id, '_blank')
   }
 }
