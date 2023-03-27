@@ -26,17 +26,9 @@ h2 {
   overflow-y: scroll;
 }
 
-.articles-container::-webkit-scrollbar {
-  display: none;
-}
-
-.articles-container {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.articles-container li {
+.articles-container li:hover {
   cursor: pointer;
+  font-weight: 500;
 }
 
 .label-modal {
@@ -48,17 +40,19 @@ h2 {
 .topics-container {
   max-height: 400px;
   overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.topics-container::-webkit-scrollbar {
-  display: none;
 }
 
 .topic {
-  font-size: 1.25em;
   cursor: pointer;
+}
+
+.topic a {
+  text-decoration: none !important;
+  color: white;
+}
+
+fa-icon {
+  font-size: 1.5em;
 }
 
 .text-modal {
@@ -78,9 +72,8 @@ h2 {
   color: #212529;
 }
 
-a {
-  text-decoration: none !important;
-  color: white;
+.author-modal:hover {
+  font-weight: 500;
 }
 
 @media (min-width: 1200px) {

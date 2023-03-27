@@ -4,6 +4,8 @@ import {Author} from "../../interfaces/author.interface";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../interfaces/article.interface";
+import {faCircleInfo} from "@fortawesome/free-solid-svg-icons";
+
 
 @Component({
   selector: 'app-author-profile',
@@ -16,6 +18,8 @@ export class AuthorProfileComponent {
   article!: Article
 
   showCoauthorsGraph: boolean = false
+
+  faCircleInfo = faCircleInfo
 
   constructor(private activatedRoute: ActivatedRoute,
               private modalService: NgbModal,
@@ -30,8 +34,8 @@ export class AuthorProfileComponent {
   }
 
   openModal(content: any, articleId: number) {
-    this.articleService.getArticleById(articleId).subscribe((article: Article) => {
-      this.article = article
+    this.articleService.getArticleById(articleId).subscribe((ar: Article) => {
+      this.article = ar
       this.modalService.open(content, {scrollable: true, size: "lg", centered: true}).result.then(
         (result) => {
           console.log("result", result)
@@ -41,6 +45,11 @@ export class AuthorProfileComponent {
         },
       );
     })
+  }
+
+  getTopicFontSize(x: number) {
+    let a = 1.25, b = 2.25, min = 1, max = this.author.topics.length
+    return (b - a) * (x - min) / (max - min) + a + 'em'
   }
 
 }
