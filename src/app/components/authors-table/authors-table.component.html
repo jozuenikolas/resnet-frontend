@@ -1,4 +1,4 @@
-<ng-container *ngIf="(authors$ | async) as dataTable">
+<div *ngIf="(authors$ | async) as dataTable" class="container d-flex flex-column mb-5">
 
   <div class="mb-3">
     Resultados: <b>{{dataTable.total}}</b>
@@ -52,7 +52,6 @@
     </div>
   </ng-container>
 
-
-</ng-container>
+</div>
 
 

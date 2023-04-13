@@ -1,4 +1,4 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
 import {Article, PaginationArticleResult} from "../../interfaces/article.interface";
 import {ArticleService} from "../../services/article.service";
@@ -12,6 +12,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class MostRelevantArticlesTableComponent {
 
   @Input() query: string
+  @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   page = 1;
   size = 5;
@@ -39,6 +40,9 @@ export class MostRelevantArticlesTableComponent {
   ngOnInit() {
     this.articles$ = this.refreshTable$
       .pipe(
+        tap(() => {
+          this.loading.emit(true)
+        }),
         switchMap(({page, size, type, years}) => {
             if (type) {
               return this.articleService.getMostRelevantArticlesByQuery(this.query, page, size, type, years)
@@ -48,18 +52,19 @@ export class MostRelevantArticlesTableComponent {
           }
         ),
         tap((articles) => {
-          if (this.setYears)
+          this.loading.emit(false)
+          if (this.setYears) {
+            this.years = []
+            this.selectedYears = []
+            this.selectedType = ''
             this.years = articles.years
+          }
         })
       )
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['query']) {
-      this.years = []
-      this.selectedYears = []
-      this.selectedType = ''
-
       this.setYears = true
       this.refreshTable$.next({page: this.page, size: this.size})
     }
@@ -80,7 +85,6 @@ export class MostRelevantArticlesTableComponent {
     } else {
       this.selectedYears.splice(this.selectedYears.indexOf(item), 1)
     }
-    console.log("selectedYears", this.selectedYears)
   }
 
   onClickYearsFilter(type: string) {
@@ -89,18 +93,10 @@ export class MostRelevantArticlesTableComponent {
     this.refreshTable$.next({page: this.page, size: this.size, type: this.selectedType, years: this.selectedYears})
   }
 
-
   openModal(content: any, articleId: number) {
     this.articleService.getArticleById(articleId).subscribe((article: Article) => {
       this.article = article
-      this.modalService.open(content, {scrollable: true, size: "lg", centered: true}).result.then(
-        (result) => {
-          console.log("result", result)
-        },
-        (reason) => {
-          console.log("reason", reason)
-        },
-      );
+      this.modalService.open(content, {scrollable: true, size: "lg", centered: true}).result.then();
     })
   }
 

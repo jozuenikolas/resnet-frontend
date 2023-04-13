@@ -1,8 +1,7 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
 import {PaginationAuthorResult} from "../../interfaces/author.interface";
 import {AuthorService} from "../../services/author.service";
-import {BehaviorSubject, Observable, switchMap} from "rxjs";
-import {Router} from "@angular/router";
+import {BehaviorSubject, Observable, switchMap, tap} from "rxjs";
 
 @Component({
   selector: 'app-authors-table',
@@ -12,6 +11,7 @@ import {Router} from "@angular/router";
 export class AuthorsTableComponent {
 
   @Input() query!: string
+  @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>()
 
   page = 1;
   size = 4;
@@ -21,17 +21,22 @@ export class AuthorsTableComponent {
 
   authors$!: Observable<PaginationAuthorResult>
 
-  constructor(private authorService: AuthorService,
-              private router: Router) {
+  constructor(private authorService: AuthorService) {
   }
 
 
   ngOnInit() {
     this.authors$ = this.refreshTable$
       .pipe(
+        tap(() => {
+          this.loading.emit(true)
+        }),
         switchMap(({page, size}) =>
           this.authorService.getAuthorsByQuery(this.query, page, size)
-        )
+        ),
+        tap(() => {
+          this.loading.emit(false)
+        })
       )
   }
 

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import {Search} from "../../interfaces/search.interface";
 import {ActivatedRoute} from "@angular/router";
 
@@ -9,10 +9,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class HomeComponent {
   searchValue!: Search
-
   setSearch: Search
+  loading: boolean = false
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private changeDetector: ChangeDetectorRef,) {
     const {option, query} = route.snapshot.queryParams
     if (option && query)
       this.setSearch = {option, query}
@@ -20,6 +20,9 @@ export class HomeComponent {
 
   onSearch(searchValue: Search) {
     this.searchValue = searchValue
-    console.log("searchValue", this.searchValue)
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
   }
 }
