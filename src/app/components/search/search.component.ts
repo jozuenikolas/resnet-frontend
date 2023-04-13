@@ -20,11 +20,11 @@ export class SearchComponent {
   inputValue: string = ""
 
   @Output() search: EventEmitter<Search> = new EventEmitter<Search>()
-
   @Input() setSearch: Search
+  @Input() isLoading: boolean = false
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['setSearch'].currentValue) {
+    if (changes['setSearch']?.currentValue) {
       let searchOp = this.searchOptions.find(item => item.code == this.setSearch.option)
       this.selectedOption = searchOp ? searchOp : this.searchOptions[1]
       this.inputValue = this.setSearch.query

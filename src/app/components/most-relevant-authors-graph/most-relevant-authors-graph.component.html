@@ -1,9 +1,9 @@
-<ng-container>
+<ng-container *ngIf="d3Nodes && d3Links">
 
-  <div *ngIf="d3Nodes && d3Links && d3Nodes.length > 0; else noData" class="row justify-content-between m-0 px-2"
+  <div *ngIf="d3Nodes.length > 0;else zeroResults"
+       class="row justify-content-between m-0 px-2"
        style="grid-gap: 1.5rem 0">
-
-    <!-- Filters -->
+    <!--#region Filters -->
     <div class="col-lg-2 px-0">
       <div class="filters">
         <!-- Title -->
@@ -29,7 +29,7 @@
           <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('include')">Incluir</button>
           <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('exclude')">Excluir</button>
         </div>
-        <div class="py-3 px-3 d-flex flex-column gap-3">
+        <div class="py-3 px-3 d-flex flex-column gap-3 affiliations-container">
           <div class="d-flex flex-nowrap gap-3" *ngFor="let aff of affiliations">
             <input [id]="aff.scopusId" type="checkbox" (click)="onClickCheckbox($event)">
             <label [for]="aff.scopusId">{{aff.name}}</label>
@@ -37,18 +37,17 @@
         </div>
       </div>
     </div>
-
-    <!-- Graph -->
+    <!--#endregion -->
+    <!--#region Graph -->
     <div class="col-lg-9" *ngIf="showGraph">
       <div class="d-flex justify-content-center text-truncate graph">
         <graph [nodes]="d3Nodes" [links]="d3Links" [forces]="forces"></graph>
       </div>
     </div>
-
+    <!--#endregion-->
   </div>
 
-
-  <ng-template #noData>
+  <ng-template #zeroResults>
     <div class="container mb-5">
       Resultados: <b>0</b>
     </div>

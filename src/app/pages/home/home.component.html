@@ -2,26 +2,30 @@
 
 <!-- Search Button -->
 <div class="container d-flex justify-content-center py-5 my-5">
-  <app-search (search)="onSearch($event)" [setSearch]="setSearch"></app-search>
+  <app-search (search)="onSearch($event)" [setSearch]="setSearch" [isLoading]=loading></app-search>
 </div>
 
 <!-- Results -->
-<div *ngIf="searchValue?.query">
+<div *ngIf="searchValue && searchValue.query" [ngSwitch]="searchValue.option">
 
   <!-- Author Results -->
-  <ng-container *ngIf="searchValue.option=='au'">
-    <app-authors-table query="{{searchValue.query}}" class="container d-flex flex-column mb-5"></app-authors-table>
-  </ng-container>
+  <app-authors-table *ngSwitchCase="'au'"
+                     (loading)="loading=$event"
+                     query="{{searchValue.query}}">
+  </app-authors-table>
 
   <!-- Most Relevant Authors Results -->
-  <ng-container *ngIf="searchValue.option=='mrau'">
-    <app-most-relevant-authors-graph query="{{searchValue.query}}"></app-most-relevant-authors-graph>
-  </ng-container>
-
+  <app-most-relevant-authors-graph *ngSwitchCase="'mrau'"
+                                   (loading)="loading=$event"
+                                   query="{{searchValue.query}}">
+  </app-most-relevant-authors-graph>
   <!-- Most Relevant Articles Results -->
-  <ng-container *ngIf="searchValue.option=='mrar'">
-    <app-most-relevant-articles-table query="{{searchValue.query}}"></app-most-relevant-articles-table>
-  </ng-container>
+
+  <app-most-relevant-articles-table *ngSwitchCase="'mrar'"
+                                    (loading)="loading=$event"
+                                    query="{{searchValue.query}}">
+  </app-most-relevant-articles-table>
+
 
 </div>
 
