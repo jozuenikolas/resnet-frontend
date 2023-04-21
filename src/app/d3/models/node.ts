@@ -34,13 +34,13 @@ export class Node implements d3.SimulationNodeDatum {
 
   get r() {
     if (this.weight) {
-      if (this.totalNodes <= 25) {
+      if (this.totalNodes <= 50) {
         return Math.sqrt(this.weight) * 12
-      } else if (this.totalNodes <= 50) {
-        return Math.sqrt(this.weight) * 9
-      } else if (this.totalNodes <= 75) {
-        return Math.sqrt(this.weight) * 6
       } else if (this.totalNodes <= 100) {
+        return Math.sqrt(this.weight) * 9
+      } else if (this.totalNodes <= 150) {
+        return Math.sqrt(this.weight) * 6
+      } else if (this.totalNodes <= 200) {
         return Math.sqrt(this.weight) * 3
       } else {
         return 0
@@ -52,13 +52,13 @@ export class Node implements d3.SimulationNodeDatum {
 
   get fontSize() {
     if (this.weight) {
-      if (this.totalNodes <= 25) {
+      if (this.totalNodes <= 50) {
         return Math.sqrt(this.weight) * 11 + 'px'
-      } else if (this.totalNodes <= 50) {
-        return Math.sqrt(this.weight) * 8 + 'px'
-      } else if (this.totalNodes <= 75) {
-        return Math.sqrt(this.weight) * 5 + 'px'
       } else if (this.totalNodes <= 100) {
+        return Math.sqrt(this.weight) * 8 + 'px'
+      } else if (this.totalNodes <= 150) {
+        return Math.sqrt(this.weight) * 5 + 'px'
+      } else if (this.totalNodes <= 200) {
         return Math.sqrt(this.weight) * 2 + 'px'
       } else {
         return 0
