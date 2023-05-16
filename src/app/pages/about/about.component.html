@@ -15,218 +15,217 @@
     <!--#endregion-->
 
     <!--#region RIGHT SIDE-->
-    <div class="col-md-9 right-side">
+    <div class="col-md-9 right-side" [ngSwitch]="currentSection">
 
-      <div [ngSwitch]="currentSection">
+      <div *ngSwitchCase="'INIT'">
+        <div class="container-fluid p-5">
+          <h1 class="display-4 fw-bold mb-4 text-center">¿Qué es ResNet?</h1>
+          <p class="fs-5" style="text-align: justify">
+            ResNet es una herramienta diseñada específicamente para brindar información académica detallada sobre
+            investigadores ecuatorianos, y ofrece a los usuarios tres tipos de búsqueda para acceder a esta
+            información. Su objetivo principal es agilizar y facilitar la comprensión de los hallazgos y resultados de
+            investigaciones científicas relevantes, permitiendo a los investigadores explorar las relaciones y
+            ocurrencias entre keywords utilizadas en estos estudios.
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Una de las funcionalidades clave de ResNet es su capacidad para ayudar a los investigadores en la búsqueda
+            de expertos en campos específicos y conocer sus áreas de investigación. Esto resulta invaluable para
+            establecer colaboraciones y encontrar recursos especializados para proyectos académicos.
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Para garantizar la precisión y relevancia de los resultados presentados, ResNet utiliza modelos de TF-IDF
+            (Term Frequency-Inverse Document Frequency) que han sido entrenados con datos obtenidos de Scopus, una
+            base de datos bibliográfica ampliamente reconocida y confiable en el ámbito académico. Esto asegura la
+            calidad y confiabilidad de la información proporcionada por ResNet.
+          </p>
 
-        <div *ngSwitchCase="'INIT'">
-          <div class="container-fluid p-5">
-            <h1 class="display-4 fw-bold mb-5 text-center">¿Qué es ResNet?</h1>
-            <p class="fs-5" style="text-align: justify">
-              ResNet es una herramienta diseñada específicamente para brindar información académica detallada sobre
-              investigadores ecuatorianos, y ofrece a los usuarios tres tipos de búsqueda para acceder a esta
-              información. Su objetivo principal es agilizar y facilitar la comprensión de los hallazgos y resultados de
-              investigaciones científicas relevantes, permitiendo a los investigadores explorar las relaciones y
-              ocurrencias entre keywords utilizadas en estos estudios.
-            </p>
-            <p class="fs-5" style="text-align: justify">
-              Una de las funcionalidades clave de ResNet es su capacidad para ayudar a los investigadores en la búsqueda
-              de expertos en campos específicos y conocer sus áreas de investigación. Esto resulta invaluable para
-              establecer colaboraciones y encontrar recursos especializados para proyectos académicos.
-            </p>
-            <p class="fs-5" style="text-align: justify">
-              Para garantizar la precisión y relevancia de los resultados presentados, ResNet utiliza modelos de TF-IDF
-              (Term Frequency-Inverse Document Frequency) que han sido entrenados con datos obtenidos de Scopus, una
-              base de datos bibliográfica ampliamente reconocida y confiable en el ámbito académico. Esto asegura la
-              calidad y confiabilidad de la información proporcionada por ResNet.
-            </p>
-
-            <h1 class="fs-2 mt-5 mb-0 fw-bold mb-3">Próximos pasos</h1>
-            <p class="fs-5" style="text-align: justify">
-              Si desea obtener más información sobre los tipos de búsqueda que ofrece ResNet, puede dirigirse a las
-              siguientes secciones:
-            </p>
-            <ul>
-              <li class="fs-5"><a href="about;section=AU">Búsqueda de Autor</a></li>
-              <li class="fs-5"><a href="about;section=MRAU">Búsqueda de Autores Relevantes</a></li>
-              <li class="fs-5"><a href="about;section=MRAR">Búsqueda de Artículos Relevantes</a></li>
-            </ul>
-          </div>
+          <h1 class="fs-2 mt-5 mb-0 fw-bold mb-3">Próximos pasos</h1>
+          <p class="fs-5" style="text-align: justify">
+            Si desea obtener más información sobre los tipos de búsqueda que ofrece ResNet, puede dirigirse a las
+            siguientes secciones:
+          </p>
+          <ul>
+            <li class="fs-5"><a href="about;section=AU">Búsqueda de Autor</a></li>
+            <li class="fs-5"><a href="about;section=MRAU">Búsqueda de Autores Relevantes</a></li>
+            <li class="fs-5"><a href="about;section=MRAR">Búsqueda de Artículos Relevantes</a></li>
+          </ul>
         </div>
-
-        <div *ngSwitchCase="'AU'">
-          <div class="container-fluid p-5">
-            <h1 class="display-4 fw-bold mb-5 text-center">Búsqueda de autor</h1>
-            <p class="fs-5" style="text-align: justify">
-              La búsqueda de autor permite buscar de manera eficiente a autores cuya afiliación actual o histórica sea
-              de Ecuador. Puede realizar la búsqueda utilizando diversos criterios, como el nombre, apellido,
-              nombre de autor, iniciales o incluso el identificador de scopus del autor. Los resultados se presentan en
-              una tabla
-              con paginación, lo que facilita la visualización y exploración de los resultados de manera ordenada.
-            </p>
-
-            <p class="fs-5" style="text-align: justify">
-              Una vez que encuentre al autor que busca, podrá acceder a su perfil completo, el cual proporciona una
-              amplia gama de información académica. Esta información se encuentra divida por secciones:
-            </p>
-            <ul id="authorSections" style="text-align: justify">
-              <li class="fs-5"><b>Información general:</b> Proporciona detalles clave sobre el autor, incluyendo sus
-                nombres, afiliaciones y un enlace directo a su perfil en la plataforma de Scopus.
-              </li>
-              <li class="fs-5"><b>Artículos del autor:</b> Muestra la lista de los trabajos de investigación publicados
-                por
-                el autor. Al hacer clic sobre cualquier artículo, se abrirá un modal que muestra información detallada
-                sobre el mismo.
-              </li>
-              <li class="fs-5"><b>Tópicos del autor:</b> Presenta los tópicos relacionados con el autor, ordenados por
-                relevancia. Al hacer clic en cualquier tópico, será redirigido a la pantalla de búsqueda, donde se
-                realizará una búsqueda de autores relevantes asociados al tópico seleccionado.
-              </li>
-              <li class="fs-5"><b>Grafo de coautoría:</b> Muestra un grafo interactivo de coautoría. Para saber más
-                sobre el grafo, puede dirigirse a la sección de <a href="about;section=GRAPH">Grafos</a>.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div *ngSwitchCase="'MRAU'">
-          <div class="container-fluid p-5">
-            <h1 class="display-4 fw-bold mb-5 text-center">Búsqueda de autores relevantes</h1>
-            <p class="fs-5" style="text-align: justify">
-              La búsqueda de los autores más relevantes por tópico permite encontrar de manera efectiva a los autores
-              más relevantes de un tema de investigación específico, como por ejemplo "artificial intelligence". Esta
-              búsqueda se realiza utilizando el modelo TF-IDF de topicos y autores.
-            </p>
-
-            <p class="fs-5" style="text-align: justify">
-              Los resultados de esta búsqueda se presentan en un grafo interactivo, lo que permite visualizar de manera
-              clara y concisa las redes de autores relevantes en el área de estudio seleccionada. Para saber más sobre
-              el grafo, puede dirigirse a la sección de <a href="about;section=GRAPH">Grafos</a>.
-            </p>
-            <p class="fs-5" style="text-align: justify">
-              Además, cuenta con dos filtros adicionales que permiten refinar aún más los resultados. El primer filtro
-              es el número de autores, lo que permite ajustar la cantidad de autores mostrados en el grafo según las
-              preferencias o necesidades específicas. El segundo filtro es el de afiliaciones, que permite seleccionar o
-              excluir autores en función de sus afiliaciones institucionales, lo que puede ser útil si se está
-              interesado en un grupo específico de investigadores o instituciones.
-            </p>
-            <div class="alert alert-warning mt-5" role="alert">
-              ¡RECUERDA! Los topicos deben estar escritos en Inglés para obtener resultados en la búsqueda.
-            </div>
-          </div>
-        </div>
-
-        <div *ngSwitchCase="'MRAR'">
-          <div class="container-fluid p-5">
-            <h1 class="display-4 fw-bold mb-5 text-center">Búsqueda de artículos relevantes</h1>
-            <p class="fs-5" style="text-align: justify">
-              La búsqueda de los artículos más relevantes por tópico permite buscar de manera eficiente los artículos
-              más
-              relevantes de un tema de investigación específico, como por ejemplo "Covid in Ecuador". Esta búsqueda se
-              realiza utilizando el modelo TF-IDF de topicos y artículos.
-            </p>
-            <p class="fs-5" style="text-align: justify">
-              Los resultados de esta búsqueda se presentan en una tabla que ofrece varias funcionalidades. Por un lado,
-              la tabla cuenta con la opción de paginación, lo que facilita la exploración ordenada de los resultados.
-              Además, se brinda la posibilidad de filtrar los resultados según la fecha de publicación de los artículos,
-              permitiendo ajustar la temporalidad de la investigación.
-            </p>
-
-            <p class="fs-5" style="text-align: justify">
-              La tabla de resultados está compuesta por columnas clave que proporcionan información relevante sobre cada
-              artículo. Estas columnas incluyen el título del artículo, los autores y la fecha de publicación. Esta
-              estructura clara y concisa permite identificar rápidamente los artículos más relevantes y obtener una
-              visión general de los mismos.
-            </p>
-
-            <p class="fs-5" style="text-align: justify">
-              Además, al hacer clic sobre cualquier artículo de la tabla, se abrirá un modal que muestra una vista
-              ampliada del mismo. En este modal se presenta información detallada, incluyendo el título, abstract, fecha
-              de publicación, autores, afiliaciones y tópicos. Esta función permitirá acceder a información más completa
-              y precisa sobre los artículos que sean de tu interés.
-            </p>
-            <div class="alert alert-warning mt-5" role="alert">
-              ¡RECUERDA! Los topicos deben estar escritos en Inglés para obtener resultados en la búsqueda.
-            </div>
-          </div>
-        </div>
-
-        <div *ngSwitchCase="'GRAPH'">
-          <div class="container-fluid p-5">
-            <h1 class="display-4 fw-bold mb-5 text-center">Grafos</h1>
-            <p class="fs-5" style="text-align: justify">
-              Los grafos interactivos presentes en la Búsqueda de Autor y Búsqueda de Autores Relevantes son una parte
-              fundamental de ResNet.
-            </p>
-
-            <h1 class="fs-2 mt-5 fw-bold mb-4">Caracterísiticas generales de los grafos</h1>
-
-            <h1 class="fs-4 fw-bold">Nodos</h1>
-            <p class="fs-5" style="text-align: justify">
-              Los nodos son interactivos y se pueden hacer clic y arrastrar. El tamaño de los nodos está determinado por
-              su importancia en el grafo. En el caso del grafo de coautoría, el tamaño de los nodos se basa en su grado,
-              mientras que en el grafo de autores relevantes, el tamaño se determina por la relevancia del autor
-              obtenida a través del modelo TF-IDF utilizado.
-            </p>
-
-            <p class="fs-5" style="text-align: justify">
-              Al hacer clic sobre cualquier nodo se abrirá un popover que muestra el nombre del autor, el grado del
-              nodo, y en el caso del grafo de autores relevantes, también muestra la relevancia del nodo. Además, es
-              posible hacer clic sobre el nombre del autor en el popover para navegar al perfil del mismo.
-            </p>
-            <img src="assets/img/node-with-popover.png" alt="" width="50%" class="mt-3 mb-5">
-
-            <h1 class="fs-4 fw-bold">Aristas</h1>
-            <p class="fs-5" style="text-align: justify">
-              Las aristas son interactivas y se pueden hacer clic sobre ellas. El ancho de las artistas esta determinada
-              por la fuerza de colaboración entre un par de autores. Cada artículo en coautoría de un par de autores
-              dado agrega una cantidad 1/(n-1) a la fuerza de su colaboración, donde n es el número total de autores en
-              el artículo. El fundamento de esta medida es que un autor divide su tiempo entre los n-1 otros autores con
-              los que trabaja en un artículo y, por lo tanto, la fuerza de colaboración con cada uno de ellos varía
-              inversamente con respecto a n-1
-            </p>
-            <p class="fs-5" style="text-align: justify">
-              Por ejemplo, los autores A y B son coautores en 3 artículos, en donde cada uno de estos tiene
-              4, 3 y 3 autores respectivamente. Por lo tanto, aplicando la fórmula, da una fuerza de 1/3, 1/2 y 1/2, con
-              un total de 4/3 de fuerza de colaboración entre los dos autores.
-            </p>
-
-            <img src="assets/img/collab-strength-example.png" alt="" width="70%">
-
-            <h1 class="fs-2 mt-5 mb-0 fw-bold mb-3">Grafo de coautoría</h1>
-            <p class="fs-5" style="text-align: justify">
-              El grafo de coatoría se presenta en el perfil de un autor, ofreciendo una representación visual de las
-              relaciones de coautoría del autor con otros investigadores. Este grafo muestra de manera gráfica la red de
-              colaboradores del autor, permitiéndo comprender la dinámica y las conexiones dentro de su red académica.
-            </p>
-            <img src="assets/img/coauthor-graph.png" alt="" width="100%">
-            <p class="fs-5 mt-3" style="text-align: justify">
-              Al explorar el Grafo de coautoría, se puede identificar fácilmente los colaboradores más frecuentes del
-              autor y visualizar las colaboraciones en forma de nodos y aristas. Esta representación gráfica
-              brinda una visión clara de la amplitud y la profundidad de las relaciones de coautoría, lo que puede ser
-              de gran utilidad para comprender la trayectoria y las áreas de investigación del autor.
-            </p>
-
-            <h1 class="fs-2 mt-5 mb-0 fw-bold mb-3">Grafo de autores relevantes</h1>
-            <p class="fs-5" style="text-align: justify">
-              Los resultados de la búsqueda de autores relevantes se presentan en un grafo interactivo con uno o mas
-              componentes que muestra de forma clara y concisa la red de autores destacados en el área de estudio
-              seleccionada. Este grafo visualiza las conexiones entre los autores, resaltando la colaboración existente
-              entre ellos.
-            </p>
-            <img src="assets/img/relevant-authors-graph.png" alt="" width="100%">
-            <p class="fs-5 mt-3" style="text-align: justify">
-              Al explorar el grafo interactivo, se podrá identificar las interacciones más relevantes y comprender la
-              estructura de la comunidad académica en el área de investigación de su interés. Además, podrás visualizar
-              la importancia de cada autor dentro de la red, ya sea por su posición central en las conexiones o por su
-              participación en colaboraciones destacadas. Esta representación visual brinda una perspectiva única sobre
-              las relaciones y la relevancia de los autores en el campo de estudio.
-            </p>
-          </div>
-        </div>
-
       </div>
 
+      <div *ngSwitchCase="'AU'">
+        <div class="container-fluid p-5">
+          <h1 class="display-4 fw-bold mb-4 text-center">Búsqueda de autor</h1>
+          <p class="fs-5" style="text-align: justify">
+            La búsqueda de autor permite buscar de manera eficiente a autores cuya afiliación actual o histórica sea
+            de Ecuador. Puede realizar la búsqueda utilizando diversos criterios, como el nombre, apellido,
+            nombre de autor, iniciales o incluso el identificador de scopus del autor. Los resultados se presentan en
+            una tabla
+            con paginación, lo que facilita la visualización y exploración de los resultados de manera ordenada.
+          </p>
+
+          <p class="fs-5" style="text-align: justify">
+            Una vez que encuentre al autor que busca, podrá acceder a su perfil completo, el cual proporciona una
+            amplia gama de información académica. Esta información se encuentra divida por secciones:
+          </p>
+          <ul id="authorSections" style="text-align: justify">
+            <li class="fs-5"><b>Información general:</b> Proporciona detalles clave sobre el autor, incluyendo sus
+              nombres, afiliaciones y un enlace directo a su perfil en la plataforma de Scopus.
+            </li>
+            <li class="fs-5"><b>Artículos del autor:</b> Muestra la lista de los trabajos de investigación publicados
+              por
+              el autor. Al hacer clic sobre cualquier artículo, se abrirá un modal que muestra información detallada
+              sobre el mismo.
+            </li>
+            <li class="fs-5"><b>Tópicos del autor:</b> Presenta los tópicos relacionados con el autor, ordenados por
+              relevancia. Al hacer clic en cualquier tópico, será redirigido a la pantalla de búsqueda, donde se
+              realizará una búsqueda de autores relevantes asociados al tópico seleccionado.
+            </li>
+            <li class="fs-5"><b>Grafo de coautoría:</b> Muestra un grafo interactivo de coautoría. Para saber más
+              sobre el grafo, puede dirigirse a la sección de <a href="about;section=GRAPH">Grafos</a>.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'MRAU'">
+        <div class="container-fluid p-5">
+          <h1 class="display-4 fw-bold mb-4 text-center">Búsqueda de autores relevantes</h1>
+          <p class="fs-5" style="text-align: justify">
+            La búsqueda de los autores más relevantes por tópico permite encontrar de manera efectiva a los autores
+            más relevantes de un tema de investigación específico, como por ejemplo "artificial intelligence". Esta
+            búsqueda se realiza utilizando el modelo TF-IDF de topicos y autores.
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Los resultados de esta búsqueda se presentan en un grafo interactivo, lo que permite visualizar de manera
+            clara y concisa las redes de autores relevantes en el área de estudio seleccionada. Para saber más sobre
+            el grafo, puede dirigirse a la sección de <a href="about;section=GRAPH">Grafos</a>.
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Además, cuenta con dos filtros adicionales que permiten refinar aún más los resultados. El primer filtro
+            es el número de autores, lo que permite ajustar la cantidad de autores mostrados en el grafo según las
+            preferencias o necesidades específicas. El segundo filtro es el de afiliaciones, el cual ofrece la
+            posibilidad de incluir o excluir afiliaciones institucionales, lo que puede ser útil si se está interesado
+            en un grupo específico de investigadores o instituciones.
+          </p>
+          <div class="alert alert-warning mt-5" role="alert">
+            ¡RECUERDA! Los topicos deben estar escritos en Inglés para obtener resultados en la búsqueda.
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'MRAR'">
+        <div class="container-fluid p-5">
+          <h1 class="display-4 fw-bold mb-4 text-center">Búsqueda de artículos relevantes</h1>
+          <p class="fs-5" style="text-align: justify">
+            La búsqueda de los artículos más relevantes por tópico permite buscar de manera eficiente los artículos
+            más
+            relevantes de un tema de investigación específico, como por ejemplo "Covid in Ecuador". Esta búsqueda se
+            realiza utilizando el modelo TF-IDF de topicos y artículos.
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Los resultados de esta búsqueda se presentan en una tabla que ofrece varias funcionalidades. Por un lado,
+            la tabla cuenta con la opción de paginación, lo que facilita la exploración ordenada de los resultados.
+            Además, se brinda la posibilidad de filtrar los resultados según la fecha de publicación de los artículos,
+            permitiendo ajustar la temporalidad de la investigación.
+          </p>
+
+          <p class="fs-5" style="text-align: justify">
+            La tabla de resultados está compuesta por columnas clave que proporcionan información relevante sobre cada
+            artículo. Estas columnas incluyen el título del artículo, los autores y la fecha de publicación. Esta
+            estructura clara y concisa permite identificar rápidamente los artículos más relevantes y obtener una
+            visión general de los mismos.
+          </p>
+
+          <p class="fs-5" style="text-align: justify">
+            Además, al hacer clic sobre cualquier artículo de la tabla, se abrirá un modal que muestra una vista
+            ampliada del mismo. En este modal se presenta información detallada, incluyendo el título, abstract, fecha
+            de publicación, autores, afiliaciones y tópicos. Esta función permitirá acceder a información más completa
+            y precisa sobre los artículos que sean de su interés.
+          </p>
+          <div class="alert alert-warning mt-5" role="alert">
+            ¡RECUERDA! Los topicos deben estar escritos en Inglés para obtener resultados en la búsqueda.
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'GRAPH'">
+        <div class="container-fluid p-5">
+          <h1 class="display-4 fw-bold mb-4 text-center">Grafos</h1>
+          <p class="fs-5" style="text-align: justify">
+            Los grafos interactivos presentes en la Búsqueda de Autor y Búsqueda de Autores Relevantes son una parte
+            fundamental de ResNet para el análisis y la visualización de información en el contexto de la
+            investigación académica.
+          </p>
+
+          <h1 class="fs-2 fw-bold mt-5 mb-4">Caracterísiticas generales de los grafos</h1>
+
+          <h1 class="fs-4 fw-bold">Nodos</h1>
+          <p class="fs-5" style="text-align: justify">
+            Los nodos son interactivos y se pueden hacer clic y arrastrar. El tamaño de los nodos está determinado por
+            su importancia en el grafo. En el caso del grafo de coautoría, el tamaño de los nodos se basa en su grado,
+            mientras que en el grafo de autores relevantes, el tamaño se determina por la relevancia del autor
+            obtenida a través del modelo TF-IDF utilizado.
+          </p>
+
+          <p class="fs-5" style="text-align: justify">
+            Al hacer clic sobre cualquier nodo se abrirá un popover que muestra el nombre del autor, el grado del
+            nodo, y en el caso del grafo de autores relevantes, también muestra la relevancia del nodo. Además, es
+            posible hacer clic sobre el nombre del autor en el popover para navegar al perfil del mismo.
+          </p>
+          <img src="assets/img/node-with-popover.png" alt="" width="50%" class="mb-4">
+
+          <h1 class="fs-4 fw-bold">Aristas</h1>
+          <p class="fs-5" style="text-align: justify">
+            Las aristas son interactivas y se pueden hacer clic sobre ellas. El ancho de las artistas esta determinada
+            por la fuerza de colaboración entre un par de autores. Cada artículo en coautoría de un par de autores
+            dado agrega una cantidad 1/(n-1) a la fuerza de su colaboración, donde n es el número total de autores en
+            el artículo. El fundamento de esta medida es que un autor divide su tiempo entre los n-1 otros autores con
+            los que trabaja en un artículo y, por lo tanto, la fuerza de colaboración con cada uno de ellos varía
+            inversamente con respecto a n-1
+          </p>
+          <p class="fs-5" style="text-align: justify">
+            Por ejemplo, los autores A y B son coautores en 3 artículos, en donde cada uno de estos tiene
+            4, 3 y 3 autores respectivamente. Por lo tanto, aplicando la fórmula, da una fuerza de 1/3, 1/2 y 1/2, con
+            un total de 4/3 de fuerza de colaboración entre los dos autores.
+          </p>
+          <img src="assets/img/collab-strength-example.png" alt="" width="70%">
+          <p class="fs-5 mt-4" style="text-align: justify">
+            Al hacer clic sobre cualquier arista se abrirá un popover que muestra la fuerza de colaboración entre dos
+            nodos.
+          </p>
+          <img src="assets/img/edge-with-popover.png" alt="" width="70%">
+
+          <h1 class="fs-2 mt-5 fw-bold mb-4">Grafo de coautoría</h1>
+          <p class="fs-5" style="text-align: justify">
+            El grafo de coatoría se presenta en el perfil de un autor, ofreciendo una representación visual de las
+            relaciones de coautoría del autor con otros investigadores. Este grafo muestra de manera gráfica la red de
+            colaboradores del autor, permitiéndo comprender la dinámica y las conexiones dentro de su red académica.
+          </p>
+          <img src="assets/img/coauthor-graph.png" alt="" width="100%">
+          <p class="fs-5 mt-4" style="text-align: justify">
+            Al explorar el Grafo de coautoría, se puede identificar fácilmente los colaboradores más frecuentes del
+            autor y visualizar las colaboraciones en forma de nodos y aristas. Esta representación gráfica
+            brinda una visión clara de la amplitud y la profundidad de las relaciones de coautoría, lo que puede ser
+            de gran utilidad para comprender la trayectoria y las áreas de investigación del autor.
+          </p>
+
+          <h1 class="fs-2 mt-5 fw-bold mb-4">Grafo de autores relevantes</h1>
+          <p class="fs-5" style="text-align: justify">
+            Los resultados de la búsqueda de autores relevantes se presentan en un grafo interactivo con uno o mas
+            componentes que muestra de forma clara y concisa la red de autores destacados en el área de estudio
+            seleccionada. Este grafo visualiza las conexiones entre los autores, resaltando la colaboración existente
+            entre ellos.
+          </p>
+          <img src="assets/img/relevant-authors-graph.png" alt="" width="100%">
+          <p class="fs-5 mt-3" style="text-align: justify">
+            Al explorar el grafo interactivo, se podrá identificar las interacciones más relevantes y comprender la
+            estructura de la comunidad académica en el área de investigación de su interés. Además, podrás visualizar
+            la importancia de cada autor dentro de la red, ya sea por su posición central en las conexiones o por su
+            participación en colaboraciones destacadas. Esta representación visual brinda una perspectiva única sobre
+            las relaciones y la relevancia de los autores en el campo de estudio.
+          </p>
+        </div>
+      </div>
 
     </div>
     <!--#endregion-->
