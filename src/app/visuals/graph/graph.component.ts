@@ -58,9 +58,19 @@ export class GraphComponent implements OnInit, AfterViewInit {
   }
 
   get options() {
+    let height: number
+
+    if (window.innerHeight > 1200) {
+      height = 900
+    } else if (window.innerHeight < 800) {
+      height = 500
+    } else {
+      height = window.innerHeight - 300
+    }
+
     return this._options = {
       width: window.innerWidth,
-      height: window.innerHeight > 800 ? window.innerHeight - 300 : 500
+      height: height
     };
   }
 }

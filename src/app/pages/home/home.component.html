@@ -6,7 +6,8 @@
 </div>
 
 <!-- Results -->
-<div *ngIf="searchValue && searchValue.query" [ngSwitch]="searchValue.option">
+<div *ngIf="searchValue && searchValue.query" [ngSwitch]="searchValue.option"
+     class="pb-5">
 
   <!-- Author Results -->
   <app-authors-table *ngSwitchCase="'au'"
@@ -28,7 +29,3 @@
 
 
 </div>
-
-
-
-
