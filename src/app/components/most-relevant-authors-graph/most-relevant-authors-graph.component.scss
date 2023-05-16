@@ -1,8 +1,6 @@
 .graph {
-  border: 10px groove #616161;
+  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.25);
   background-color: var(--white);
-  min-height: 520px;
-  height: calc(100vh - 280px);
 }
 
 .filters {
@@ -14,7 +12,6 @@
   border-bottom: 1px solid #000000;
 }
 
-
 .affiliations-container {
   margin: 0.5rem 0;
   min-height: 500px;
@@ -25,7 +22,6 @@
 .affiliations-container::-webkit-scrollbar {
   display: none;
 }
-
 
 input[type=checkbox] {
   -ms-transform: scale(1.9); /* IE */

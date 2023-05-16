@@ -12,7 +12,7 @@ import {NgbPopover} from "@ng-bootstrap/ng-bootstrap";
         <b>Nombre:</b> {{node.popover.content}}
       </a>
       <div><b>Grado:</b> {{node.degree}}</div>
-      <ng-container *ngIf="node.weight"><b>Peso:</b> {{node.weight}}</ng-container>
+      <ng-container *ngIf="node.weight"><b>Relevancia:</b> {{node.weight}}</ng-container>
       <ng-template #elseLink>{{node.popover.content}}</ng-template>
     </ng-template>
 

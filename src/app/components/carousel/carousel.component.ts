@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faCaretRight, faCaretLeft} from "@fortawesome/free-solid-svg-icons";
+import {faCaretLeft, faCaretRight} from "@fortawesome/free-solid-svg-icons";
 import {CarouselItem} from "../../interfaces/carousel.interface";
 
 @Component({
@@ -15,17 +15,17 @@ export class CarouselComponent {
     {
       title: 'Búsqueda de autor',
       subtitle: 'Busca autores por nombre, apellido, identificador o sus iniciales',
-      section: 'author'
+      section: 'AU'
     },
     {
       title: 'Búsqueda de autores relevantes',
       subtitle: 'Busca los autores más relevantes sobre cualquier tema',
-      section: 'mostRelevantAuthors'
+      section: 'MRAU'
     },
     {
       title: 'Búsqueda de artículos relevantes',
       subtitle: 'Busca el estado del arte del cualquier tema',
-      section: 'mostRelevantArticles'
+      section: 'MRAR'
     }
   ]
 

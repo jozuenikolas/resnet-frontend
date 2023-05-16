@@ -1,8 +1,30 @@
-.light-jumbotron {
-  background-color: var(--white),
+.section {
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.2;
+  cursor: pointer;
+  padding: 0.75rem;
 }
 
-.dark-jumbotron {
-  background-color: var(--dark);
-  color: var(--white)
+.section:hover {
+  background-color: rgba(162, 162, 162, 0.3);
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.left-side {
+  border-right: rgba(162, 162, 162, 0.5) 1px solid;
+}
+
+#authorSections > li {
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 767px) {
+  .left-side {
+    border-bottom: rgba(162, 162, 162, 0.5) 1px solid;
+    border-right: 0;
+  }
 }

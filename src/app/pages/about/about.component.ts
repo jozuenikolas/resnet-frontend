@@ -1,32 +1,47 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+
+interface Section {
+  code: string;
+  text: string;
+  selected: boolean;
+}
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
 
-  timeScroll: number = 0
+  sections: Section[] = [
+    {code: 'INIT', text: 'Getting Started', selected: true},
+    {code: 'AU', text: 'Búsqueda de Autor', selected: false},
+    {code: 'MRAU', text: 'Búsqueda de Autores Relevantes', selected: false},
+    {code: 'MRAR', text: 'Búsqueda de Artículos Relevantes', selected: false},
+    {code: 'GRAPH', text: 'Grafos', selected: false},
+  ]
+  
+  currentSection: string | undefined
 
   constructor(private activeRoute: ActivatedRoute) {
+    this.currentSection = this.sections.find(section => section.selected)?.code;
   }
 
-  ngAfterViewChecked(): void {
-    this.timeScroll = this.timeScroll + 1
-    if (this.timeScroll < 3) {
-      this.activeRoute.params.subscribe(param => {
-        const id = param['section']
-        if (id) {
-          const yOffset = -90;
-          const element = document.getElementById(id);
-          if (element && window.pageYOffset == 0) {
-            window.scrollTo({top: element.getBoundingClientRect().top + yOffset, behavior: 'smooth'});
-          }
-        }
-      })
-    }
+  ngOnInit() {
+    this.activeRoute.params.subscribe(param => {
+      const code = param['section']
+      if (code) {
+        this.setSection(code)
+      }
+    })
+  }
+
+  setSection(code: string) {
+    this.currentSection = code
+    this.sections = this.sections.map(section =>
+      ({...section, selected: section.code === code})
+    );
   }
 
 }

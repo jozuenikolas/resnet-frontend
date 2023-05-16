@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {faCoffee} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import {faCoffee} from "@fortawesome/free-solid-svg-icons";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  faCoffee = faCoffee
 }

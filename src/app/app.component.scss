@@ -1,8 +1,8 @@
 body {
-  background-color: rgba(217, 217, 217, 0.70);
+  background-color: var(--secondary)
 }
 
 .content {
   margin-top: 64px;
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 264px);
 }
