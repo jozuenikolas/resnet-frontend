@@ -19,7 +19,10 @@ export class HomeComponent {
   }
 
   onSearch(searchValue: Search) {
-    this.searchValue = searchValue
+    this.searchValue = {
+      ...searchValue,
+      query: searchValue.query.trim().replace(/\s\s+/g, ' ')
+    };
   }
 
   ngAfterContentChecked(): void {
