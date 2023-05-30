@@ -5,6 +5,7 @@ export interface Article {
   authors: { scopusId: string, name: string }[]
   affiliations: string[]
   topics: string[]
+  doi: string
 }
 
 export interface ArticleResult {
