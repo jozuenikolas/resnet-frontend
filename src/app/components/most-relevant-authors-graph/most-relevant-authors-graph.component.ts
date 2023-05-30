@@ -1,8 +1,12 @@
-import {Component, EventEmitter, Input, Output, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Inject, Input, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Link, Node} from "../../d3";
 import {AuthorNode, Coauthors} from "../../interfaces/author.interface";
 import {AuthorService} from "../../services/author.service";
 import {tap} from "rxjs";
+
+import {faDownload} from "@fortawesome/free-solid-svg-icons";
+import {DOCUMENT} from "@angular/common";
+import * as htmlToImage from "html-to-image";
 
 @Component({
   selector: 'app-most-relevant-authors-graph',
@@ -27,7 +31,11 @@ export class MostRelevantAuthorsGraphComponent {
   affiliations: { scopusId: number, name: string }[] = []
   selectedAffiliations: number[] = []
 
-  constructor(private authorService: AuthorService) {
+  @ViewChild("downloadEl") downloadEl: ElementRef;
+  faDownload = faDownload
+
+  constructor(private authorService: AuthorService,
+              @Inject(DOCUMENT) private coreDoc: Document) {
   }
 
   ngOnInit() {
@@ -109,5 +117,21 @@ export class MostRelevantAuthorsGraphComponent {
 
   getIndexByScopusId(scopusId: any) {
     return this.apiNodes.map(node => node.scopusId).indexOf(scopusId)
+  }
+
+  downloadDataUrl(dataUrl: string, filename: string): void {
+    let a = this.coreDoc.createElement("a");
+    a.href = dataUrl;
+    a.download = filename;
+    this.coreDoc.body.appendChild(a);
+    a.click();
+    this.coreDoc.body.removeChild(a);
+  }
+
+  onDownloadGraph(): void {
+    const theElement = this.downloadEl.nativeElement;
+    htmlToImage.toPng(theElement).then(dataUrl => {
+      this.downloadDataUrl(dataUrl, `most-relevant-authors-graph-${this.query}`);
+    });
   }
 }

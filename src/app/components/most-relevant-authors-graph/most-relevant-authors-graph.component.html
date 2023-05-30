@@ -7,8 +7,16 @@
       <div class="col-lg-2 px-0  col">
       </div>
       <div class="col-lg-9">
-        <div><b>Nodos:</b> {{d3Nodes.length}}</div>
-        <div><b>Relaciones:</b> {{d3Links.length}}</div>
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+          <div class="d-flex flex-column">
+            <div><b>Nodos:</b> {{d3Nodes.length}}</div>
+            <div><b>Relaciones:</b> {{d3Links.length}}</div>
+          </div>
+          <button type="button" class="btn btn-success" (click)="onDownloadGraph()">
+            <fa-icon [icon]="faDownload"></fa-icon>
+            Descargar
+          </button>
+        </div>
       </div>
     </div>
 
@@ -55,14 +63,13 @@
 
       <!--#region Graph -->
       <div class="col-lg-9" *ngIf="showGraph">
-        <div class="d-flex justify-content-center text-truncate graph">
+        <div class="d-flex justify-content-center text-truncate graph" #downloadEl>
           <graph [nodes]="d3Nodes" [links]="d3Links" [forces]="forces"></graph>
         </div>
       </div>
       <!--#endregion-->
     </div>
   </div>
-
 
   <ng-template #zeroResults>
     <div class="container mb-5">
@@ -71,5 +78,3 @@
   </ng-template>
 
 </ng-container>
-
-
