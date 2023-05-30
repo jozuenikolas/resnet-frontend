@@ -1,7 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component, ElementRef, Inject, Input, ViewChild} from '@angular/core';
 import {Link, Node} from "../../d3";
 import {AuthorService} from "../../services/author.service";
 import {Author, AuthorNode} from "../../interfaces/author.interface";
+
+import {faDownload} from "@fortawesome/free-solid-svg-icons";
+import {DOCUMENT} from "@angular/common";
+import * as htmlToImage from "html-to-image";
 
 @Component({
   selector: 'app-coauthors-graph',
@@ -21,7 +25,11 @@ export class CoauthorsGraphComponent {
 
   showGraph: boolean = false
 
-  constructor(private authorService: AuthorService) {
+  @ViewChild("downloadEl") downloadEl: ElementRef;
+  faDownload = faDownload
+
+  constructor(private authorService: AuthorService,
+              @Inject(DOCUMENT) private coreDoc: Document) {
   }
 
   ngOnInit() {
@@ -63,5 +71,21 @@ export class CoauthorsGraphComponent {
 
   getIndexByScopusId(scopusId: any) {
     return this.apiNodes.map(node => node.scopusId).indexOf(scopusId)
+  }
+
+  downloadDataUrl(dataUrl: string, filename: string): void {
+    let a = this.coreDoc.createElement("a");
+    a.href = dataUrl;
+    a.download = filename;
+    this.coreDoc.body.appendChild(a); //Firefox requires link to be in body
+    a.click();
+    this.coreDoc.body.removeChild(a);
+  }
+
+  onDownloadGraph(): void {
+    const theElement = this.downloadEl.nativeElement;
+    htmlToImage.toPng(theElement).then(dataUrl => {
+      this.downloadDataUrl(dataUrl, `coauthor-graph-${this.author.scopusId}`);
+    });
   }
 }

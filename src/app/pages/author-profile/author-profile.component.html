@@ -103,6 +103,11 @@
   </div>
   <div class="modal-body">
     <div class="d-flex flex-column gap-3 p-3">
+      <div *ngIf="article.doi">
+        <h6 class="label-modal">DOI</h6>
+        <h6 class="text-modal">{{article.doi}}</h6>
+      </div>
+
       <div>
         <h6 class="label-modal">Título</h6>
         <h6 class="text-modal">{{article.title}}</h6>
