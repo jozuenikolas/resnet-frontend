@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Author, AuthorResult, Coauthors, PaginationAuthorResult} from "../interfaces/author.interface";
+import {Author, AuthorResult, Coauthors, PaginationAuthorResult, RandItem} from "../interfaces/author.interface";
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
@@ -46,12 +46,21 @@ export class AuthorService {
     return this.http.post<Coauthors>(`${this.rootURL}coauthors/most-relevant-authors`, bodyParams)
   }
 
+
   mapAuthorTopics(author: AuthorResult) {
     if (author.topics.length > 10) {
       author.topics = author.topics.splice(0, 10)
       author.topics.push('...')
     }
     return author
+  }
+
+  getRandomAuthors(): Observable<RandItem[]> {
+    return this.http.get<RandItem[]>(`${this.rootURL}random-authors`)
+  }
+
+  getRandomTopics(): Observable<RandItem[]> {
+    return this.http.get<RandItem[]>(`${this.rootURL}random-topics`)
   }
 
 }

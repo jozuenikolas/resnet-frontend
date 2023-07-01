@@ -8,15 +8,29 @@
     </button>
     <div class="dropdown-menu" ngbDropdownMenu>
       <button ngbDropdownItem class="btn-option" *ngFor="let option of searchOptions"
-              (click)="selectedOption=option">
+              (click)="setOption(option)">
         <fa-icon [icon]="option.icon"></fa-icon>
         {{option.label}}
       </button>
     </div>
   </div>
+
   <label for="inputQuery" class="sr-only">Search</label>
-  <input id="inputQuery" class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue"
+  <!--<input id="inputQuery" class="form-control" placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue"
+         (keyup)="onEnter($event)">-->
+
+
+  <input id="inputQuery"
+         class="form-control"
+         list="datalistOptions"
+         placeholder="{{selectedOption.placeholder}}" [(ngModel)]="inputValue"
          (keyup)="onEnter($event)">
+  <datalist id="datalistOptions">
+    <option *ngFor="let item of randItems"
+            [value]="item.value">
+  </datalist>
+
+
   <button type="button" class="btn btn-primary btn-search" (click)="this.search.emit({
       option: this.selectedOption.code,
       query: this.inputValue
