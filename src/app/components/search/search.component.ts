@@ -34,7 +34,13 @@ export class SearchComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['setSearch']?.currentValue) {
       let searchOp = this.searchOptions.find(item => item.code == this.setSearch.option)
-      this.selectedOption = searchOp ? searchOp : this.searchOptions[1]
+
+      if(searchOp){
+        this.setOption(searchOp)
+      } else {
+        this.setOption(this.searchOptions[1])
+      }
+
       this.inputValue = this.setSearch.query
       this.search.emit({
         option: this.selectedOption.code,
