@@ -53,11 +53,10 @@ export class CoauthorsGraphComponent {
       this.d3Nodes.push(new Node(node.scopusId, this.apiNodes.length, node.initials, {
         enablePopover: true,
         title: 'Autor',
-        content: node.firstName + " " + node.lastName,
+        content: node.firstName && node.lastName ? `${node.firstName} ${node.lastName}` : node.lastName || '',
         link: 'author/' + node.scopusId
       }))
     })
-    console.log(this.d3Nodes)
   }
 
   setupLinks(links: { source: number, target: number, collabStrength: number }[]) {
@@ -66,7 +65,6 @@ export class CoauthorsGraphComponent {
       this.d3Nodes[this.getIndexByScopusId(link.target)].degree++
       this.d3Links.push(new Link(link.source, link.target, link.collabStrength * 5))
     })
-    console.log(this.d3Links)
   }
 
   getIndexByScopusId(scopusId: any) {
