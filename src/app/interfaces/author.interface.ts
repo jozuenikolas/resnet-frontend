@@ -37,6 +37,10 @@ export interface AuthorNode {
   weight: number
 }
 
+export interface RandItem{
+  value: string
+  size: number
+}
 
 //{ scopusId: string, initials: string, firstName: string, lastName: string }
 
