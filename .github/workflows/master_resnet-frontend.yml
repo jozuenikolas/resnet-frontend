@@ -25,15 +25,13 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-      
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: release.zip
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,9 +45,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-          
-      - name: unzip artifact for deployment
-        run: unzip release.zip
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -57,5 +52,5 @@ jobs:
         with:
           app-name: 'resnet-frontend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F2C12DA649104AA597AF6CDC3FC607BF }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E5061031A2D44BC1B4B292E0BD5BA9E7 }}
           package: .
