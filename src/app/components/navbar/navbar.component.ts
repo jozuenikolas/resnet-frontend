@@ -12,8 +12,8 @@ export class NavbarComponent {
   showDropdown: boolean = false
 
   items: NavbarItem[] = [
-    {route: '/home', label: 'INICIO'},
-    {route: '/about', label: 'ACERCA DE'}
+    {route: '/home', label: 'HOME'}, //INICIO
+    {route: '/about', label: 'ABOUT'} //ACERCA DE
   ]
 
 }

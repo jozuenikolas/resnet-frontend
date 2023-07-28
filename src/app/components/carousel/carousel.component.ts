@@ -13,8 +13,8 @@ export class CarouselComponent {
 
   items: CarouselItem[] = [
     {
-      title: 'Búsqueda de autor',
-      subtitle: 'Busca autores por nombre, apellido, identificador o sus iniciales',
+      title: 'Search of Author', //Búsqueda de autor
+      subtitle: 'Search author by name, last name, identifiers or the initials', //Busca autores por nombre, apellido, identificador o sus iniciales
       section: 'AU'
     },
     {

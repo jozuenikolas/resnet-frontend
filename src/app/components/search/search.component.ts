@@ -13,9 +13,9 @@ export class SearchComponent {
   faSearch = faSearch
 
   searchOptions: SearchOption[] = [
-    {code: 'au', label: 'Autor', placeholder: 'Ej. Lorena Recalde', icon: faUser},
-    {code: 'mrau', label: 'Autores relevantes', placeholder: 'Ej. Artificial Intelligence, Covid', icon: faUsers},
-    {code: 'mrar', label: 'Artículos relevantes', placeholder: 'Ej. Machine learning', icon: faNewspaper}
+    {code: 'au', label: 'Author', placeholder: 'e.g. Jhon Smith', icon: faUser},
+    {code: 'mrau', label: 'Relevant authors', placeholder: 'e.g. Artificial Intelligence, Covid', icon: faUsers},
+    {code: 'mrar', label: 'Relevant articles', placeholder: 'e.g. Machine learning', icon: faNewspaper}
   ]
 
   selectedOption: SearchOption

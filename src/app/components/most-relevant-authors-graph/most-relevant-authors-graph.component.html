@@ -6,15 +6,15 @@
          style="grid-gap: 1.5rem 0">
       <div class="col-lg-2 px-0  col">
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-9 pe-4">
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
           <div class="d-flex flex-column">
-            <div><b>Nodos:</b> {{d3Nodes.length}}</div>
-            <div><b>Relaciones:</b> {{d3Links.length}}</div>
+            <div><b>Nodes:</b> {{d3Nodes.length}}</div>
+            <div><b>Relationships:</b> {{d3Links.length}}</div>
           </div>
           <button type="button" class="btn btn-success" (click)="onDownloadGraph()">
             <fa-icon [icon]="faDownload"></fa-icon>
-            Descargar
+            Download
           </button>
         </div>
       </div>
@@ -28,27 +28,27 @@
         <div class="filters">
           <!-- Title -->
           <div class="text-center border-bot py-3 title">
-            FILTROS
+            FILTERS
           </div>
 
           <!-- Authors number -->
           <div class="border-bot py-2 px-3 subtitle">
-            Número de autores
+            Number of authors
           </div>
           <div class="border-bot py-3 px-3">
             <input id="authorsRange" type="range" class="form-range" min="10" max="200" step="10"
                    [(ngModel)]="authorsNumber" (change)="onAuthorsNumberChange()">
-            <label for="authorsRange" class="form-label">Autores: {{authorsNumber}}</label>
+            <label for="authorsRange" class="form-label">Authors: {{authorsNumber}}</label>
           </div>
 
           <!-- Affiliations -->
           <div class="border-bot py-2 px-3 subtitle">
-            Afiliaciones
+            Affiliations
           </div>
           <div class="d-flex flex-nowrap justify-content-between pt-3 px-3">
-            <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('include')">Incluir
+            <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('include')">Include
             </button>
-            <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('exclude')">Excluir
+            <button class="btn btn-primary filter-button" (click)="onClickAffiliationsFilter('exclude')">Exclude
             </button>
           </div>
           <div class="py-3 px-3 d-flex flex-column gap-3 affiliations-container">
@@ -62,7 +62,7 @@
       <!--#endregion -->
 
       <!--#region Graph -->
-      <div class="col-lg-9" *ngIf="showGraph">
+      <div class="col-lg-9 pe-4" *ngIf="showGraph">
         <div class="d-flex justify-content-center text-truncate graph" #downloadEl>
           <graph [nodes]="d3Nodes" [links]="d3Links" [forces]="forces"></graph>
         </div>

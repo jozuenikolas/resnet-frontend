@@ -1,7 +1,7 @@
 <div *ngIf="(authors$ | async) as dataTable" class="container d-flex flex-column mb-5">
 
   <div class="mb-3">
-    Resultados: <b>{{dataTable.total}}</b>
+    Results: <b>{{dataTable.total}}</b>
   </div>
 
   <ng-container *ngIf="dataTable.total > 0">
@@ -10,10 +10,10 @@
       <table class="table table-striped align-middle" style="width:100%">
         <thead>
         <tr>
-          <th style="width:20%">Nombres</th>
-          <th style="width:30%">Afiliaciones</th>
-          <th style="width:10%">Artículos</th>
-          <th style="width:40%">Tópicos</th>
+          <th style="width:20%">Names</th>
+          <th style="width:30%">Affiliations</th>
+          <th style="width:10%">Articles</th>
+          <th style="width:40%">Topics</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -45,7 +45,7 @@
       ></ngb-pagination>
 
       <select class="form-select" style="width: auto" [(ngModel)]="size" (ngModelChange)="onChangePagination()">
-        <option [ngValue]="2">2 items por página</option>
+        <option [ngValue]="2">2 items per page</option>
         <option [ngValue]="4">4 items por página</option>
         <option [ngValue]="6">6 items por página</option>
       </select>

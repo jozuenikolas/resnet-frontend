@@ -2,34 +2,34 @@
 
   <!--#region General Information-->
   <div class="d-flex flex-column mb-5 pb-3">
-    <h2>Información general</h2>
+    <h2>General information</h2>
     <hr>
 
     <div class="row">
       <div class="col d-flex flex-column mb-3">
-        <h6 class="label">Nombre</h6>
+        <h6 class="label">Name</h6>
         <h6 class="text">{{author.firstName}}</h6>
       </div>
       <div class="col d-flex flex-column mb-3">
-        <h6 class="label">Apellido</h6>
+        <h6 class="label">Last name</h6>
         <h6 class="text">{{author.lastName}}</h6>
       </div>
     </div>
 
     <div class="row">
       <div class="col d-flex flex-column mb-3">
-        <h6 class="label">Nombre de autor</h6>
+        <h6 class="label">Author name</h6>
         <h6 class="text">{{author.authName}}</h6>
       </div>
       <div class="col d-flex flex-column mb-3">
-        <h6 class="label">Iniciales</h6>
+        <h6 class="label">Initials</h6>
         <h6 class="text">{{author.initials}}</h6>
       </div>
     </div>
 
     <div class="row mb-3">
       <div class="col d-flex flex-column ">
-        <h6 class="label">Afiliaciones</h6>
+        <h6 class="label">Affiliations</h6>
         <ul>
           <li *ngFor="let affiliation of author.affiliations" class="text">
             {{affiliation}}
@@ -40,7 +40,7 @@
 
     <div class="d-flex justify-content-end">
       <a class="scopus-profile" href="https://www.scopus.com/authid/detail.uri?authorId={{author.scopusId}}">
-        Perfil de Scopus
+        Scopus profile
       </a>
     </div>
 
@@ -50,7 +50,7 @@
 
   <!--#region Articles-->
   <div class="d-flex flex-column mb-5 pb-3">
-    <h2>Artículos</h2>
+    <h2>Articles</h2>
     <hr>
     <ul class="articles-container">
       <li *ngFor="let article of author.articles" class="text mb-6" (click)="openModal(content, article.scopusId)">
@@ -62,7 +62,7 @@
 
   <!--#region Topics-->
   <div class="d-flex flex-column mb-5 pb-3">
-    <h2>Tópicos</h2>
+    <h2>Topics</h2>
     <hr>
     <div class="d-flex flex-wrap gap-5 topics-container justify-content-between">
       <span *ngFor="let topic of author.topics, index as i" class="badge text-bg-secondary topic"
@@ -77,7 +77,7 @@
   <!--#region Coauthors-->
   <div class="d-flex flex-column">
     <div class="d-flex flex-nowrap align-items-center gap-3">
-      <h2>Coautores</h2>
+      <h2>Coauthors</h2>
       <fa-icon [icon]="faCircleInfo" placement="right" ngbTooltip="El grafo es arrastrable y ampliable. Los nodos y aristas son arrastrables y clicables"></fa-icon>
     </div>
     <hr>
