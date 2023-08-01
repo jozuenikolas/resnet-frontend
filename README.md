@@ -8,8 +8,6 @@ SPA del sistema ResNet
 - [Requisitos previos](#requisitos-previos)
 - [Instalación](#instalacion)
 - [Uso](#uso)
-- [Características](#caracteristicas)
-- [Contribución](#contribucion)
 - [Licencia](#licencia)
 
 ## Descripción
