@@ -4,9 +4,10 @@ SPA del sistema ResNet
 
 ## Tabla de contenidos
 
-- [Descripción](#descripcion)
+- [Descripción](#descripción)
 - [Requisitos previos](#requisitos-previos)
-- [Instalación](#instalacion)
+- [Instalación](#instalación)
+- [Configuración](#configuración)
 - [Uso](#uso)
 - [Licencia](#licencia)
 
@@ -25,6 +26,10 @@ Frontend del sistema web ResNet que tiene como propósito extraer y presentar da
 1. Clona el repositorio: `git clone https://github.com/jozuenikolas/resnet-frontend.git`
 2. Ingresa al directorio del proyecto: `cd resnet-frontend`
 3. Instala las dependencias: `npm install`
+
+## Configuración
+
+Antes de ejecutar el frontend, asegúrate de configurar correctamente los parámetros necesarios, como la conexión al backend. Para ello, completa los valores correspondientes en el archivo enviroment.dev o enviroment.prod.
 
 ## Uso
 
