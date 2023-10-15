@@ -57,5 +57,5 @@ jobs:
         with:
           app-name: 'resnet-frontend'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E5061031A2D44BC1B4B292E0BD5BA9E7 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0A190D273C7646EAB67619509EF450F9 }}
           package: .	
